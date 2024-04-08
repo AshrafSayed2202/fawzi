@@ -9,6 +9,7 @@ import CursorProvider, { useCursor } from '../components/CursorProvider'
 import AboutTitle from '../components/AboutTitle'
 import figure from '../assets/figure.png'
 import wave1 from '../assets/wave1.svg'
+
 function HeroSection() {
     const NameSection = React.useRef()
     const FigureRef = React.useRef()
@@ -80,6 +81,14 @@ function AboutSection() {
             return prev !== size ? size : prev;
         })
     }
+    const ref = React.useRef()
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ['0 1', '0 0.5']
+    })
+    const translateProgres1 = useTransform(scrollYProgress, [0, 1], ['-200px', '0px'])
+    const translateProgres2 = useTransform(scrollYProgress, [0, 1], ['-200px', '0px'])
+    const translateProgres3 = useTransform(scrollYProgress, [0, 1], ['100px', '0px'])
     return (
         <div className='about-section'>
             <AboutTitle name='Ui/Ux' />
@@ -88,14 +97,22 @@ function AboutSection() {
             <AboutTitle name='Creative' />
             <AboutTitle name='Web' />
             <AboutTitle name='Developer' />
-            <div className='about-text'>
-                <p className='greeting'>I'm Fawzi Sayed</p>
-                <p className='about-block'>An independent digital designer and front-end developer. Passionate about crafting unforgettable experiences and providing companies with innovative, user-centric solutions for nearly a decade.</p><br />
-                <p className='about-block'>Collaborating with global brands and agencies, I specialize in designing and developing websites and applications that prioritize interaction, motion, and visual engagement.</p><br />
-                <p className='about-block'>My work has been on converting complex issues into straightforward, user-friendly solutions that are accessible to everyone.</p><br />
-                <p className='get-in' onMouseEnter={(e) => { changeCursorSize('60px') }} onMouseLeave={(e) => { changeCursorSize('0px') }}>Get in touch <FontAwesomeIcon className='contact-icon' icon="fa-solid fa-arrow-right" /></p>
-            </div>
+            <motion.div className='about-text' ref={ref} style={{ opacity: scrollYProgress, translateY: translateProgres1 }}>
+                <motion.p className='greeting' style={{ translateX: translateProgres2, transition: '0.2s' }}>I'm Fawzi Sayed</motion.p>
+                <motion.p style={{ translateX: translateProgres2, transition: '0.3s' }} className='about-block'>An independent digital designer and front-end developer. Passionate about crafting unforgettable experiences and providing companies with innovative, user-centric solutions for nearly a decade.</motion.p><br />
+                <motion.p style={{ translateX: translateProgres2, transition: '0.4s' }} className='about-block'>Collaborating with global brands and agencies, I specialize in designing and developing websites and applications that prioritize interaction, motion, and visual engagement.</motion.p><br />
+                <motion.p style={{ translateX: translateProgres2, transition: '0.5s' }} className='about-block'>My work has been on converting complex issues into straightforward, user-friendly solutions that are accessible to everyone.</motion.p><br />
+                <motion.p style={{ translateY: translateProgres3, }} className='get-in' onMouseEnter={(e) => { changeCursorSize('60px') }} onMouseLeave={(e) => { changeCursorSize('0px') }}>Get in touch <FontAwesomeIcon className='contact-icon' icon="fa-solid fa-arrow-right" /></motion.p>
+            </motion.div>
         </div >
+    )
+}
+function SkillsAndEducation() {
+    return (
+        <div className='skills-container'>
+            <p className='skills-header'>Skills & Education</p>
+            <p className='skills-sub-header'>For those who know what they're looking for..</p>
+        </div>
     )
 }
 function Home() {
@@ -106,17 +123,15 @@ function Home() {
         }, { duration: 1200, fill: "forwards" })
     })
     return (
-
         <CursorProvider>
             <Cursor />
             <div ref={homeRef} style={{ opacity: 0 }}>
                 <Nav />
                 <HeroSection />
                 <AboutSection />
+                <SkillsAndEducation />
             </div>
         </CursorProvider>
-
     )
 }
-
 export default Home
