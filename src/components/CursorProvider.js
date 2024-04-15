@@ -8,10 +8,11 @@ export const useCursor = () => useContext(CursorContext)
 function CursorProvider({ children }) {
 
     const [cursorSize, setCursorSize] = useState('0px')
+    const [cursorImage, setCursorImage] = useState(null)
 
 
     return (
-        <CursorContext.Provider value={{ cursorSize, setCursorSize }}>
+        <CursorContext.Provider value={{ cursorSize, setCursorSize, cursorImage, setCursorImage }}>
             {children}
         </CursorContext.Provider>
     )

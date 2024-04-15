@@ -118,18 +118,318 @@ body{
 }
 /* Skills & Education section */
 .skills-container{
-    background-color: #111;
+    background-color: #131313;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
     color: #eee;
-    height: 100vh;
+    width: 100%;
 }
-.skills-header{
-    font-size: 5em;
-    font-weight: 100;
-    text-align: center;
+.section-header-container{
+    color: #eee;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 70px;
 }
-.skills-sub-header{
-    
+.section-header{
+    font-size: 4.5em;
+    font-weight: bold;
+}
+.section-sub-header{
     font-size: 2em;
     font-weight: 100;
+}
+.react-switch-checkbox {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+.react-switch-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 50px 0;
+    width: 300px;
+    cursor: pointer;
+    height: 50px;
+    border: 1px solid #e9e9e7;
+    border-radius: 100px;
+    backdrop-filter: blur(15px);
+    position: relative;
+    z-index: 2;
+    transition: 0.3s;
+}
+.react-switch-label:hover{
+    scale: 1.1;
+}
+.label-switch-text{
+    width: 50%;
     text-align: center;
+    font-weight: bold;
+}
+.react-switch-label .react-switch-button {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 50%;
+    height: 40px;
+    border-radius: 45px;
+    transition: 0.4s;
+    mix-blend-mode: difference;
+    background: #111;
+    border: 1px solid #e9e9e7;
+}
+
+.react-switch-checkbox:checked + .react-switch-label .react-switch-button {
+    left: calc(100% - 4px);
+    transform: translateX(-100%);
+}  
+.react-switch-label:active .react-switch-button {
+    width: 45%;
+}
+/* table */
+.table-container{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: 80%;
+    border-bottom: 2px solid #eeeeee63;
+    position: relative;
+}
+.table-container::after{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    background-color: #eeeeee0c;
+}
+.skills-designer-text{
+    position: absolute;
+    font-size: 380px;
+    line-height: 380px;
+    z-index: 1;
+    font-weight: 900;
+    opacity: 0.05;
+    bottom: 0%;
+    left: 0%;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 100px;
+    transform: translate(15%, 0%);
+}
+.skills-figure{
+    width: 40%;
+    z-index: 2;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+.skills-figure-img{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+.figure-switch{
+    height:80px ;
+    width: auto;
+    background-color: #eeeeee25;
+}
+.figure-switch:hover{
+    scale: 1;
+}
+.figure-switch-btn{
+    padding: 15px;
+    margin: 10px;
+    width: 40%;
+    height: 60px;
+    font-size: 1.5em;
+    border-radius: 100px;
+    transition: 0.6s;
+    cursor: pointer;
+    text-wrap: nowrap;
+}
+.figure-switch-btn.active{
+    background-color: #000;
+    border: 1px solid #eeeeee3f;
+    width: 60%;
+}
+.figure-switch-icon{
+    transform: rotate(-45deg);
+    margin-left:10px;
+    display: none;
+}
+.figure-switch-btn.active .figure-switch-icon{
+    display: inline;
+}
+.skills-text-section{
+    z-index: 2;
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.skills-educations-container{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.skills-group{
+    position: relative;
+    width: 100%;
+    transition: 0.3s;
+    opacity: 0;
+    display: none;
+}
+.skills-group.active{
+    opacity: 1;
+    display: block;
+}
+.skill-item{
+    padding: 20px 10px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    padding-left: 40px;
+    border-left: 1px solid #eeeeee63;
+    display: flex;
+    justify-content: space-between;
+}
+.skill-item::before{
+    content: '';
+    width: 2px;
+    height: 100%;
+    background-color:white;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-1px,-50%);
+    transition: 0.3s;
+    opacity: 0;
+}.skill-item.active::before{
+    opacity: 1;
+}
+.skill-item::after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 40px;
+    background-color: #eeeeee63;
+    position: absolute;
+}
+.skill-item:last-child::after{
+    height: 0px;
+}
+.skill-text{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 20px;
+    align-items: center;
+}
+.education-text{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.sub-skill-text{
+    opacity: 0.4;
+}
+.skill-name{
+    font-size: 3em;
+}
+.education-name{
+    font-size: 2em;
+}
+.skill-name,
+.education-name{
+    font-weight: bold;
+}
+.certficate-btn{
+    padding: 10px;
+    color: #111;
+    background-color: #eee;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+.certficate-btn:hover{
+    transform: rotate(45deg);
+}
+.counters-container{
+    border-top: 1px solid #eeeeee63;
+    width: 100%;
+    height: 200px;
+    transform: translateY(-1px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+/* Portfolio */
+.portfolio-container{
+    width: 100%;
+    background-color: #0c0c0c;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 150px;
+}
+.portfolio-cards-container{
+    margin-top: 70px;
+    width: 80%; 
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: 400px 400px 400px;
+}
+.portfolio-card{
+    overflow: hidden;
+    position: relative;
+}
+.portfolio-card:hover .portfolio-card-image{
+    scale: 1.05;
+    opacity: 0.5;
+}
+.portfolio-card-image{
+    height: 100%;
+    width: 100%;
+    transition: 0.5s;
+}
+.card-text-container{
+    position: absolute;
+    bottom: 0;
+    background-color: #111;
+    color: #eee;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    opacity: 0;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.portfolio-card:hover .card-text-container{
+    opacity: 1;
+}
+.card-see-more{
+    opacity: 0.8;
+}
+.card-name{
+    font-weight: bold;
+    padding: 15px 0;
+    font-size: 1.2em;
 }

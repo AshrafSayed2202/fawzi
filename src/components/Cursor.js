@@ -2,10 +2,9 @@
 import React from 'react'
 import './CursorStyle.css'
 import { useCursor } from './CursorProvider'
-
 function Cursor() {
     const cursorOut = React.useRef(null)
-    const { cursorSize } = useCursor()
+    const { cursorSize, cursorImage } = useCursor()
     React.useEffect(() => {
         const CursorMove = (e) => {
             const posX = e.clientX
@@ -13,20 +12,27 @@ function Cursor() {
             cursorOut.current.animate({
                 left: `${posX}px`,
                 top: `${posY}px`
-            }, { duration: 500, fill: "forwards" })
+            }, { duration: 300, fill: "forwards" })
         }
         cursorOut.current.animate({
             width: cursorSize,
-            height: cursorSize
+            height: cursorImage == null ? cursorSize : 'unset',
         }, { duration: 300, fill: "forwards" })
+        cursorOut.current.animate({
+            scale: 1,
+            opacity: 1
+        }, { duration: 200, delay: 300, fill: "forwards" })
         window.addEventListener("mousemove", CursorMove)
         return () => {
             window.removeEventListener("mousemove", CursorMove)
         }
-    }, [cursorSize])
+    })
     return (
         <>
-            <div ref={cursorOut} className='cursor-outline'></div>
+            {cursorImage == null ?
+                <div ref={cursorOut} className='cursor-outline'></div> :
+                <img ref={cursorOut} className='cursor-image' src={cursorImage} alt={cursorImage} />
+            }
         </>
     )
 }

@@ -8,7 +8,32 @@ import Cursor from '../components/Cursor'
 import CursorProvider, { useCursor } from '../components/CursorProvider'
 import AboutTitle from '../components/AboutTitle'
 import figure from '../assets/figure.png'
+import skillsFigure from '../assets/skills-figure.png'
 import wave1 from '../assets/wave1.svg'
+import SkillItem from '../components/SkillItem';
+
+import Figma from '../assets/logos/Figma.png'
+import Sketch from '../assets/logos/Sketch.png'
+import AdobeXD from '../assets/logos/AdobeXD.png'
+import AdobeIllustrator from '../assets/logos/AdobeIllustrator.png'
+import CounterOne from '../assets/counter-one.png'
+import CounterTwo from '../assets/counter-two.png'
+import CounterThree from '../assets/counter-three.png'
+
+
+import one from '../assets/certficates/one.png'
+import two from '../assets/certficates/two.png'
+import three from '../assets/certficates/three.png'
+import four from '../assets/certficates/four.png'
+import PortfolioCard from '../components/PortfolioCard';
+
+import PortfolioCardOne from '../assets/portfolioCards/one.jpg';
+import PortfolioCardTwo from '../assets/portfolioCards/two.jpg';
+import PortfolioCardThree from '../assets/portfolioCards/three.jpg';
+import PortfolioCardFour from '../assets/portfolioCards/four.jpg';
+import PortfolioCardFive from '../assets/portfolioCards/five.jpg';
+import PortfolioCardSix from '../assets/portfolioCards/six.jpg';
+import PortfolioCardSeven from '../assets/portfolioCards/seven.jpg';
 
 function HeroSection() {
     const NameSection = React.useRef()
@@ -108,10 +133,96 @@ function AboutSection() {
     )
 }
 function SkillsAndEducation() {
+    const [switchState, setSwitchState] = React.useState(false);
+    const firstGroupRef = React.useRef(null)
+    const secondGroupRef = React.useRef(null)
+    React.useEffect(() => {
+        if (switchState) {
+            firstGroupRef.current.className = 'skills-group active';
+            secondGroupRef.current.className = 'skills-group';
+            setTimeout(() => {
+                firstGroupRef.current.style.display = 'block'
+                secondGroupRef.current.style.display = 'none'
+            }, 300);
+        } else {
+            secondGroupRef.current.className = 'skills-group active';
+            firstGroupRef.current.className = 'skills-group';
+            setTimeout(() => {
+                secondGroupRef.current.style.display = 'block'
+                firstGroupRef.current.style.display = 'none'
+            }, 300);
+        }
+    }, [switchState])
+    function figureSwitchHover() {
+        document.querySelectorAll('.figure-switch-btn').forEach((e) => {
+            e.classList.toggle('active')
+        })
+    }
     return (
         <div className='skills-container'>
-            <p className='skills-header'>Skills & Education</p>
-            <p className='skills-sub-header'>For those who know what they're looking for..</p>
+            <div className='section-header-container'>
+                <p className='section-header'>Skills & Education</p>
+                <p className='section-sub-header'>For those who know what they're looking for..</p>
+                <input className="react-switch-checkbox" id={`react-switch-new`} type="checkbox" value={switchState} onChange={() => { setSwitchState(!switchState) }} />
+                <label className="react-switch-label" htmlFor={`react-switch-new`}>
+                    <p className='label-switch-text'>Skills</p>
+                    <span className="react-switch-button" />
+                    <p className='label-switch-text'>Education</p>
+                </label>
+            </div>
+            <div className='skills-designer-text'>
+                <span>DESIG</span>
+                <span>NER</span>
+            </div>
+            <div className='table-container'>
+                <div className='skills-figure'>
+                    <img src={skillsFigure} alt='skills-figure' className='skills-figure-img' />
+                    <div className="react-switch-label figure-switch">
+                        <p className='label-switch-text figure-switch-btn active' onMouseEnter={() => { figureSwitchHover() }}>Portfolio<FontAwesomeIcon className='figure-switch-icon' icon="fa-solid fa-arrow-right" /></p>
+                        <p className='label-switch-text figure-switch-btn' onMouseEnter={() => { figureSwitchHover() }} >Hire me<FontAwesomeIcon className='figure-switch-icon' icon="fa-solid fa-arrow-right" /></p>
+                    </div>
+                </div>
+                <div className='skills-text-section'>
+                    <div className='skills-educations-container'>
+                        <div className='skills-group' ref={firstGroupRef} >
+                            <SkillItem textClass='education-text' nameClass='education-name' name='Advanced User Experience Design' sub='Udacity 2022' certficate={one} />
+                            <SkillItem textClass='education-text' nameClass='education-name' name='User Experience Nanodegree' sub='Udacity 2022' certficate={two} />
+                            <SkillItem textClass='education-text' nameClass='education-name' name='UX Design Fundamentals' sub='Mhara-Tech 2022' certficate={three} />
+                            <SkillItem textClass='education-text' nameClass='education-name' name='Google UX Design Professional' sub='Coursera 2023' certficate={four} />
+                        </div>
+                        <div className='skills-group' ref={secondGroupRef} >
+                            <SkillItem textClass='skill-text' nameClass='skill-name' name='FIGMA' sub='01' icon={Figma} />
+                            <SkillItem textClass='skill-text' nameClass='skill-name' name='SKETCH' sub='02' icon={Sketch} />
+                            <SkillItem textClass='skill-text' nameClass='skill-name' name='ADOBE XD' sub='03' icon={AdobeXD} />
+                            <SkillItem textClass='skill-text' nameClass='skill-name' name='ADOBE ILLUSTRATOR' sub='04' icon={AdobeIllustrator} />
+                        </div>
+                    </div>
+                    <div className='counters-container'>
+                        <img src={CounterOne} alt={CounterOne} />
+                        <img src={CounterTwo} alt={CounterTwo} />
+                        <img src={CounterThree} alt={CounterThree} />
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+function PortfolioSection() {
+    return (
+        <div className='portfolio-container' id='portfolio'>
+            <div className='section-header-container'>
+                <p className='section-header'>Portfolio & Projects</p>
+                <p className='section-sub-header'>Latest projects</p>
+            </div>
+            <div className='portfolio-cards-container'>
+                <PortfolioCard gridArea='1 / 1 / 2 / 2' projectName='Project Name' projectImage={PortfolioCardOne} />
+                <PortfolioCard gridArea='1 / 2 / 3 / 4' projectName='Project Name' projectImage={PortfolioCardTwo} />
+                <PortfolioCard gridArea='1 / 4 / 3 / 5' projectName='Project Name' projectImage={PortfolioCardThree} />
+                <PortfolioCard gridArea='2 / 1 / 3 / 2' projectName='Project Name' projectImage={PortfolioCardFour} />
+                <PortfolioCard gridArea='3 / 1 / 4 / 2' projectName='Project Name' projectImage={PortfolioCardFive} />
+                <PortfolioCard gridArea='3 / 2 / 4 / 3' projectName='Project Name' projectImage={PortfolioCardSix} />
+                <PortfolioCard gridArea='3 / 3 / 4 / 5' projectName='Project Name' projectImage={PortfolioCardSeven} />
+            </div>
         </div>
     )
 }
@@ -130,6 +241,7 @@ function Home() {
                 <HeroSection />
                 <AboutSection />
                 <SkillsAndEducation />
+                <PortfolioSection />
             </div>
         </CursorProvider>
     )
