@@ -34,6 +34,7 @@ import PortfolioCardFour from '../assets/portfolioCards/four.jpg';
 import PortfolioCardFive from '../assets/portfolioCards/five.jpg';
 import PortfolioCardSix from '../assets/portfolioCards/six.jpg';
 import PortfolioCardSeven from '../assets/portfolioCards/seven.jpg';
+import ClientComment from '../components/ClientComment';
 
 function HeroSection() {
     const NameSection = React.useRef()
@@ -226,6 +227,95 @@ function PortfolioSection() {
         </div>
     )
 }
+function ClientsComments() {
+    React.useEffect(() => {
+        const comments = document.querySelector('.comments-container')
+        const commentsContainers = [...comments.children]
+        // // 
+        commentsContainers.slice(0, 6).reverse().forEach(comment => {
+            const htmlString = comment.outerHTML;
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlString, 'text/html');
+            const htmlObject = doc.body.firstChild;
+            comments.insertAdjacentElement("afterbegin", htmlObject);
+        })
+        // // 
+        commentsContainers.slice(0, 6).forEach(comment => {
+            const htmlString = comment.outerHTML;
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlString, 'text/html');
+            const htmlObject = doc.body.firstChild;
+            comments.insertAdjacentElement("beforeend", htmlObject);
+        })
+        const refreshActiveComment = () => {
+            document.querySelectorAll('.client-comment').forEach(e => {
+                e.classList.remove('active')
+                function inRange(x, min, max) {
+                    return x >= min && x <= max;
+                }
+                function isElementCentered(element) {
+                    const rect = element.getBoundingClientRect();
+                    const windowCenter = window.innerWidth / 2;
+                    return inRange(Math.trunc(rect.left + (rect.width / 2)), Math.trunc(windowCenter - 10), Math.trunc(windowCenter + 10));
+                }
+                if (isElementCentered(e)) {
+                    e.classList.add('active')
+                }
+            })
+        }
+        let isDragging = false, startX, startScrollLeft;
+        const dragStart = (e) => {
+            isDragging = true;
+            // 
+            startX = e.pageX
+            startScrollLeft = comments.scrollLeft;
+            // 
+            comments.classList.add('dragging')
+        }
+        const dragging = (e) => {
+            if (!isDragging) return;
+            comments.scrollLeft = startScrollLeft - (e.pageX - startX)
+        }
+        const dragStop = () => {
+
+            isDragging = false;
+            // 
+            comments.classList.remove('dragging')
+            // 
+            refreshActiveComment()
+        }
+        const infiniteScroll = () => {
+            if (comments.scrollLeft === 0) {
+                comments.classList.add('no-trans')
+                comments.scrollLeft = comments.scrollWidth - (2 * comments.offsetWidth)
+                comments.classList.remove('no-trans')
+            } else if (Math.ceil(comments.scrollLeft) === comments.scrollWidth - comments.offsetWidth) {
+                comments.classList.add('no-trans')
+                comments.scrollLeft = comments.offsetWidth
+                comments.classList.remove('no-trans')
+            }
+        }
+        comments.addEventListener('mousedown', dragStart)
+        comments.addEventListener('mousemove', dragging)
+        comments.addEventListener('mouseup', dragStop)
+        comments.addEventListener('scroll', infiniteScroll)
+    }, [])
+    return (
+        <div className='clients-container'>
+            <div className='section-header-container'>
+                <p className='section-sub-header'>Testimonials</p>
+                <p className='section-header'>What Clients Say</p>
+            </div>
+            <div className='comments-container'>
+                <ClientComment personImage={figure} personName='Brian Smith' personTitle='Project Manager' comment='I know I can count on your service if I need my project done fast and with the best possible result. I am a regular customer and hope to continue our work!' />
+                <ClientComment personImage={figure} personName='Lisa Morrison' personTitle='Photographer' comment='For me as a photographer, this is an awesome opportunity to share my works and to communicate with other people who are into graphic art and photography!' />
+                <ClientComment personImage={figure} personName='John Lewis' personTitle='CEO, Designer' comment='When our designs need an expert opinion or approval, I know I can rely on your agency. Thank you for all your help – I will be recommending you to everyone!' />
+                <ClientComment personImage={figure} personName='Rita Johnson' personTitle='Sales Manager' comment='This is a great website for any type of creative agency or a designer to get inspired, educated and simply to see other designers’ works. Excellent job guys!' />
+                <ClientComment personImage={figure} personName='Fawzi Sayed' personTitle='Ui/Ux Designer' comment='I know I can count on your service if I need my project done fast and with the best possible result. I am a regular customer and hope to continue our work!' />
+            </div>
+        </div>
+    )
+}
 function Home() {
     const homeRef = React.useRef(null)
     React.useEffect(() => {
@@ -242,6 +332,7 @@ function Home() {
                 <AboutSection />
                 <SkillsAndEducation />
                 <PortfolioSection />
+                <ClientsComments />
             </div>
         </CursorProvider>
     )
