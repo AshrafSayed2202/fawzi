@@ -34,8 +34,11 @@ import PortfolioCardFour from '../assets/portfolioCards/four.jpg';
 import PortfolioCardFive from '../assets/portfolioCards/five.jpg';
 import PortfolioCardSix from '../assets/portfolioCards/six.jpg';
 import PortfolioCardSeven from '../assets/portfolioCards/seven.jpg';
-import ClientComment from '../components/ClientComment';
 
+import ClientComment from '../components/ClientComment';
+import PricingCard from '../components/PricingCard';
+
+import HireMe from '../assets/HireMe.png'
 function HeroSection() {
     const NameSection = React.useRef()
     const FigureRef = React.useRef()
@@ -277,7 +280,6 @@ function ClientsComments() {
             comments.scrollLeft = startScrollLeft - (e.pageX - startX)
         }
         const dragStop = () => {
-
             isDragging = false;
             // 
             comments.classList.remove('dragging')
@@ -308,10 +310,69 @@ function ClientsComments() {
             </div>
             <div className='comments-container'>
                 <ClientComment personImage={figure} personName='Brian Smith' personTitle='Project Manager' comment='I know I can count on your service if I need my project done fast and with the best possible result. I am a regular customer and hope to continue our work!' />
-                <ClientComment personImage={figure} personName='Lisa Morrison' personTitle='Photographer' comment='For me as a photographer, this is an awesome opportunity to share my works and to communicate with other people who are into graphic art and photography!' />
+                <ClientComment personImage={figure} personName='Lisa Morrison' personTitle='Photographer' comment='For me as a photographer, this is an awesome opportunity to share my works and to communicate with other people who are into graphic art and photography!' active={true} />
                 <ClientComment personImage={figure} personName='John Lewis' personTitle='CEO, Designer' comment='When our designs need an expert opinion or approval, I know I can rely on your agency. Thank you for all your help – I will be recommending you to everyone!' />
                 <ClientComment personImage={figure} personName='Rita Johnson' personTitle='Sales Manager' comment='This is a great website for any type of creative agency or a designer to get inspired, educated and simply to see other designers’ works. Excellent job guys!' />
                 <ClientComment personImage={figure} personName='Fawzi Sayed' personTitle='Ui/Ux Designer' comment='I know I can count on your service if I need my project done fast and with the best possible result. I am a regular customer and hope to continue our work!' />
+            </div>
+        </div>
+    )
+}
+function PricingSection() {
+    const [switchState, setSwitchState] = React.useState(false);
+    const firstGroupRef = React.useRef(null)
+    const secondGroupRef = React.useRef(null)
+    React.useEffect(() => {
+        if (switchState) {
+            firstGroupRef.current.className = 'pricing-group active';
+            secondGroupRef.current.className = 'pricing-group';
+            setTimeout(() => {
+                firstGroupRef.current.style.display = 'flex'
+                secondGroupRef.current.style.display = 'none'
+            }, 300);
+        } else {
+            secondGroupRef.current.className = 'pricing-group active';
+            firstGroupRef.current.className = 'pricing-group';
+            setTimeout(() => {
+                secondGroupRef.current.style.display = 'flex'
+                firstGroupRef.current.style.display = 'none'
+            }, 300);
+        }
+    }, [switchState])
+    return (
+        <div className='pricing-container'>
+            <div className='section-header-container'>
+                <p className='section-header'>Pricing</p>
+                <p className='section-sub-header'>Advantage</p>
+                <input className="react-switch-checkbox" id={`pricing-switch`} type="checkbox" value={switchState} onChange={() => { setSwitchState(!switchState) }} />
+                <label className="react-switch-label" htmlFor={`pricing-switch`}>
+                    <p className='label-switch-text'>Per Time</p>
+                    <span className="react-switch-button pricing" />
+                    <p className='label-switch-text'>Per Secreen</p>
+                </label>
+            </div>
+            <div className='pricing-group' ref={firstGroupRef} >
+                <PricingCard head='Screen' sub='Pay per screen' note='Cancel Anytime' noteType='text' price='$5~10/Screen' priceType='price' btnType='normal' />
+                <PricingCard head='Project' sub='Pay per project' note='Cancel Anytime' noteType='text' price='$250/Project' priceType='price' btnType='normal' />
+                <PricingCard head='Not Sure?' sub='Check the skill' note='You can order' noteType='text' price='1 free task' priceType='text' btnType='trans' />
+            </div>
+            <div className='pricing-group' ref={secondGroupRef} >
+                <PricingCard head='1 Month' sub='Part time' note='Cancel Anytime' noteType='text' price='$500/mo' priceType='price' btnType='normal' />
+                <PricingCard head='1 Month' sub='Full time' note=' Save $200' noteType='round' price='$800/mo' priceType='price' btnType='normal' />
+                <PricingCard head='1 Year' sub='Paid monthly' note='Save $600' noteType='round' price='$9000/yr' priceType='price' btnType='normal' />
+
+            </div>
+        </div>
+    )
+}
+function HireMeSection() {
+    return (
+        <div className='hire-container'>
+            <img className='hire-cover' src={HireMe} alt='Hire Me' />
+            <div className='hire-text'>
+                <h2>Have a Project?</h2>
+                <h1>let's work together</h1>
+                <span>get in touch<span></span></span>
             </div>
         </div>
     )
@@ -333,6 +394,8 @@ function Home() {
                 <SkillsAndEducation />
                 <PortfolioSection />
                 <ClientsComments />
+                <PricingSection />
+                <HireMeSection />
             </div>
         </CursorProvider>
     )

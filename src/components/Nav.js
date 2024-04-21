@@ -49,12 +49,12 @@ function Nav() {
         <div className="container" ref={containerRef}>
             <div className="logo" onMouseEnter={(e) => { changeCursorSize('70px') }} onMouseLeave={(e) => { changeCursorSize('0px') }} >FS</div>
             <ul ref={navRef} className="navbar">
-                <li>Cases</li>
+                <li>Home</li>
                 <li>About</li>
-                <li>Services</li>
-                <li>Projects</li>
                 <li>Skills</li>
+                <li>Portfolio</li>
                 <li>Testimonial</li>
+                <li>Services</li>
                 <li>Contact</li>
             </ul>
             <div className="btn-container" onMouseEnter={(e) => { changeCursorSize('70px') }} onMouseLeave={(e) => { changeCursorSize('0px') }}>

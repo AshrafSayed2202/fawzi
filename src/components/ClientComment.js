@@ -3,7 +3,7 @@ import React from 'react'
 
 function ClientComment(props) {
     return (
-        <div className='client-comment'>
+        <div className={props.active ? 'client-comment active' : 'client-comment'}>
             <div className='comment'>
                 <FontAwesomeIcon className='comment-icon' icon="fa-solid fa-quote-left" />
                 <p>{props.comment}</p>

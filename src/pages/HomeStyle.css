@@ -283,6 +283,7 @@ body{
     flex-direction: column;
     align-items: center;
     position: relative;
+    border-left: 1px solid #eeeeee63;
 }
 .skills-group{
     position: relative;
@@ -290,6 +291,7 @@ body{
     transition: 0.3s;
     opacity: 0;
     display: none;
+    min-height: 425px;
 }
 .skills-group.active{
     opacity: 1;
@@ -301,7 +303,6 @@ body{
     overflow: hidden;
     position: relative;
     padding-left: 40px;
-    border-left: 1px solid #eeeeee63;
     display: flex;
     justify-content: space-between;
 }
@@ -533,4 +534,156 @@ body{
     font-size: 1.2em;
     opacity: 0.7;
     font-weight: 200;
+}
+/* Pricing */
+.pricing-container{
+    width: 100%;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 150px;
+}
+.pricing-group{
+    position: relative;
+    width: 60%;
+    transition: 0.3s;
+    opacity: 0;
+    display: none;
+    justify-content: space-between;
+    color: #e9e9e7;
+}
+.pricing-group.active{
+    opacity: 1;
+    display: flex;
+}
+
+.pricing-card{
+    height: 400px;
+    width: calc((100%/3));
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border-right: 1px solid #eeeeee67;
+}
+.pricing-card:last-child{
+    border: none;
+}
+.pricing-text{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.pricing-header{
+    font-weight: bold;
+    font-size: 2.5em;
+}
+.pricing-sub-header{
+    opacity: 0.6;
+}
+.pricing-card .note{
+    opacity: 0.6;
+}
+.pricing-card .note.round{
+    opacity: 0.6;
+    border: 1px solid #e9e9e7;
+    border-radius: 50px;
+    width: fit-content;
+    padding: 4px 12px;
+    margin: auto;
+}
+.pricing-card .price{
+    font-weight: bold;
+    font-size: 2.5em;
+}
+.pricing-btn{
+    background-color: #ccc;
+    color: #111;
+    font-weight: bold;
+    padding: 15px;
+    width: 65%;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+    overflow: hidden;
+}
+.pricing-btn::before{
+    content: "";
+    display: block;
+    background-color: #7c7c7cd7;
+    width: 20px;
+    height: 200%;
+    position: absolute;
+    transform: skewX(-30deg) translateY(-20%);
+    top: 0%;
+    left: -20%;
+}
+.pricing-btn:hover{
+    background-color: #fff;
+}
+.pricing-btn:hover::before{
+    transition: 0.3s;
+    left: 110%;
+}
+.pricing-btn.trans{
+    background: transparent;
+    color: #e9e9e7;
+    border: 1px solid #e9e9e7;
+}
+/* Hire Me */
+.hire-container{
+    width: 100%;
+    position: relative;
+}
+.hire-cover{
+    width: 100%;
+}
+.hire-text{
+    position: absolute;
+    top: 50%;
+    transform: translate(20%, -70%);
+    color: #e9e9e7;
+}
+.hire-text h1{
+    text-transform: uppercase;
+    font-size: 3.5em;
+}
+.hire-text h1,.hire-text h2{
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+.hire-text>span{
+    text-transform: capitalize;
+    color: #000;
+    background-color: #e9e9e7;
+    padding: 20px 80px;
+    border-radius: 7px;
+    font-size: 1.2em;
+    cursor: pointer;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+.hire-text>span::after{
+    content: '';
+    position: absolute;
+    background-color: #e9e9e7;
+    width: 0px;
+    height: 0px;
+    border-radius: 50%;
+    mix-blend-mode: difference;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: 0.5s;
+}
+.hire-text>span:hover::after{
+    width: 300px;
+    height: 300px;
 }
