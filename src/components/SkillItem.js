@@ -38,7 +38,7 @@ function SkillItem(props) {
             <>
                 {props.nameClass === 'skill-name' ?
                     <img src={props.icon} alt={props.icon} /> :
-                    <FontAwesomeIcon className='contact-icon certficate-btn' icon="fa-solid fa-arrow-right" />
+                    <a href={props.link} target='_blanc'><FontAwesomeIcon className='contact-icon certficate-btn' icon="fa-solid fa-arrow-right" /></a>
                 }
             </>
         </div>

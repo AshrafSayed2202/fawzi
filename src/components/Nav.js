@@ -47,15 +47,15 @@ function Nav() {
     const { x, y } = position
     return (
         <div className="container" ref={containerRef}>
-            <div className="logo" onMouseEnter={(e) => { changeCursorSize('70px') }} onMouseLeave={(e) => { changeCursorSize('0px') }} >FS</div>
+            <div className="logo" onMouseEnter={(e) => { changeCursorSize('70px') }} onMouseLeave={(e) => { changeCursorSize('0px') }} >fuiux</div>
             <ul ref={navRef} className="navbar">
-                <li>Home</li>
-                <li>About</li>
-                <li>Skills</li>
-                <li>Portfolio</li>
-                <li>Testimonial</li>
-                <li>Services</li>
-                <li>Contact</li>
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#About">About</a></li>
+                <li><a href="#Skills">Skills</a></li>
+                <li><a href="#Portfolio">Portfolio</a></li>
+                <li><a href="#Testimonial">Testimonial</a></li>
+                <li><a href="#Services">Pricing</a></li>
+                <li><a href="#Contact">Contact</a></li>
             </ul>
             <div className="btn-container" onMouseEnter={(e) => { changeCursorSize('70px') }} onMouseLeave={(e) => { changeCursorSize('0px') }}>
                 <div className="email-container">

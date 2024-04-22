@@ -42,7 +42,7 @@ function AboutTitle(props) {
             singleData['translateProgres'] = ['0px 150px', '0px 0px'];
             singleData['rotateProgres'] = ['0deg', '0deg', '0deg']
             break;
-        case 'Web':
+        case 'Product':
             singleData['offset'] = ["0.7 0", "1 1"];
             singleData['scaleProgres'] = [0.8, 1];
             singleData['opacityProgres'] = [0.1, 0.6];
@@ -50,7 +50,7 @@ function AboutTitle(props) {
             singleData['translateProgres'] = ['150px 0px', '-700px 0px'];
             singleData['rotateProgres'] = ['0deg', '0deg', '0deg']
             break;
-        case 'Developer':
+        case 'Lead':
             singleData['offset'] = ["0.7 0", "1 1"];
             singleData['scaleProgres'] = [0.8, 1];
             singleData['opacityProgres'] = [0.1, 0.6];

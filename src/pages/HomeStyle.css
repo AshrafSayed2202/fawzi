@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
 *{
-    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
 }
 body{
     overflow-x: hidden;
@@ -435,6 +441,12 @@ body{
     font-size: 1.2em;
 }
 /* Clients */
+.wave2{
+    transform: rotate(180deg) translateY(1px);
+}
+.wave3{
+    transform: translateY(10px);
+}
 .clients-container{
     width: 90%;
     margin: auto;
@@ -442,6 +454,7 @@ body{
     flex-direction: column;
     align-items: center;
     padding-bottom: 150px;
+    position: relative;
 }
 .clients-container .section-header-container{
     color: #111;
@@ -476,6 +489,7 @@ body{
     scroll-snap-align: start;
 }
 .comment{
+    min-height: 380px;
     text-align: center;
     border: 1px solid #ccc;
     color: #919191;
@@ -638,6 +652,7 @@ body{
 .hire-container{
     width: 100%;
     position: relative;
+    background-color: #000;
 }
 .hire-cover{
     width: 100%;
@@ -660,7 +675,7 @@ body{
 .hire-text>span{
     text-transform: capitalize;
     color: #000;
-    background-color: #e9e9e7;
+    background-color: #ccc;
     padding: 20px 80px;
     border-radius: 7px;
     font-size: 1.2em;
@@ -669,21 +684,105 @@ body{
     position: relative;
     overflow: hidden;
     display: inline-block;
+    transition: 0.3s;
+}
+.hire-text>span:hover{
+    background-color: #e9e9e7;
 }
 .hire-text>span::after{
-    content: '';
+    content: "";
+    display: block;
+    background-color: #7c7c7cd7;
+    width: 20px;
+    height: 200%;
     position: absolute;
-    background-color: #e9e9e7;
-    width: 0px;
-    height: 0px;
-    border-radius: 50%;
-    mix-blend-mode: difference;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    transition: 0.5s;
+    transform: skewX(-30deg) translateY(-20%);
+    top: 0%;
+    left: -20%;
 }
 .hire-text>span:hover::after{
-    width: 300px;
-    height: 300px;
+    transition: 0.3s;
+    left: 110%;
+}
+/* Footer */
+.footer-container{
+    background-color: #000;
+    color: #eee;
+    padding: 70px 0;
+}
+.footer-text{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+    padding-bottom: 50px;
+    border-bottom: 2px solid #eeeeee6c;
+}
+.footer-text>div{
+    width: 25%;
+}
+.footer-text div h1{
+    font-family: "Audiowide";
+    text-transform: uppercase;
+    margin: 0;
+    font-size: 2.5em;
+}
+.footer-text h2{
+    text-transform: capitalize;
+    font-weight: normal;
+    font-size: 1.9em;
+}
+.footer-text ul li{
+    list-style: square;
+    padding-left: 10px;
+}
+.footer-text a{
+    margin-top: 20px;
+    color: #e9e9e7;
+    text-decoration: none;
+    position: relative;
+    transition: 0.3s;
+    display: inline-block;
+    overflow: hidden;
+    padding-bottom: 2px;
+}
+.footer-text a::after{
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: #eee;
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    right: 100%;
+    transition: 0.3s ease-in-out;
+}
+.footer-text a:hover::after{
+    right: 0%;
+}
+.footer-contact p{
+    display: flex;
+    gap: 20px;
+    align-items: end;
+}
+.footer-contact p:first-of-type a::after{
+    transition: 0.3s;
+    left: 0%;
+}
+.footer-socials a{
+    font-size: 2em;
+    margin:20px;
+}
+
+.copyright{
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.8;
+}
+.copyright a{
+    font-weight: bold;
+    color: #e9e9e7;
 }
