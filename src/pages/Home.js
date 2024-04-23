@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -51,6 +50,7 @@ import wave2 from '../assets/wave2.svg'
 import wave3 from '../assets/wave3.svg'
 
 import resume from '../assets/Resume.pdf'
+import SectionHeader from '../components/SectionHeader';
 
 function HeroSection() {
     const NameSection = React.useRef()
@@ -170,16 +170,18 @@ function SkillsAndEducation() {
             }, 300);
         }
     }, [switchState])
-    function figureSwitchHover() {
+    function figureSwitchHover(data) {
         document.querySelectorAll('.figure-switch-btn').forEach((e) => {
-            e.classList.toggle('active')
+            e.classList.remove('active')
+            if (e.childNodes[0].data === data) {
+                e.classList.add('active')
+            }
         })
     }
     return (
         <div className='skills-container' id='Skills'>
             <div className='section-header-container'>
-                <p className='section-header'>Skills & Education</p>
-                <p className='section-sub-header'>For those who know what they're looking for..</p>
+                <SectionHeader header='Skills & Education' sub="For those who know what they're looking for.." />
                 <input className="react-switch-checkbox" id={`react-switch-new`} type="checkbox" value={switchState} onChange={() => { setSwitchState(!switchState) }} />
                 <label className="react-switch-label" htmlFor={`react-switch-new`}>
                     <p className='label-switch-text'>Skills</p>
@@ -192,33 +194,53 @@ function SkillsAndEducation() {
                 <span>NER</span>
             </div>
             <div className='table-container'>
-                <div className='skills-figure'>
+                <motion.div
+                    initial={{ opacity: 0, x: -500 }}
+                    transition={{ duration: 0.7, delay: 0.3 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    className='skills-figure'>
                     <img src={skillsFigure} alt='skills-figure' className='skills-figure-img' />
-                    <div className="react-switch-label figure-switch">
-                        <p className='label-switch-text figure-switch-btn active' onMouseEnter={() => { figureSwitchHover() }}>Portfolio<FontAwesomeIcon className='figure-switch-icon' icon="fa-solid fa-arrow-right" /></p>
-                        <p className='label-switch-text figure-switch-btn' onMouseEnter={() => { figureSwitchHover() }} >Hire me<FontAwesomeIcon className='figure-switch-icon' icon="fa-solid fa-arrow-right" /></p>
-                    </div>
-                </div>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        transition={{ duration: 0.7, delay: 1 }}
+                        whileInView={{ opacity: 1 }}
+                        className="react-switch-label figure-switch">
+                        <p className='label-switch-text figure-switch-btn active' onMouseEnter={() => { figureSwitchHover("Portfolio") }}>Portfolio<FontAwesomeIcon className='figure-switch-icon' icon="fa-solid fa-arrow-right" /></p>
+                        <p className='label-switch-text figure-switch-btn' onMouseEnter={() => { figureSwitchHover("Hire me") }} >Hire me<FontAwesomeIcon className='figure-switch-icon' icon="fa-solid fa-arrow-right" /></p>
+                    </motion.div>
+                </motion.div>
                 <div className='skills-text-section'>
                     <div className='skills-educations-container'>
-                        <div className='skills-group' ref={firstGroupRef} >
+                        <motion.div
+                            initial={{ opacity: 0, x: 500 }}
+                            transition={{ duration: 0.7, delay: 0.3 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            className='skills-group' ref={firstGroupRef} >
                             <SkillItem textClass='education-text' nameClass='education-name' name='Advanced User Experience Design' sub='Udacity 2022' certficate={one} link='https://www.udacity.com/certificate/MKKTDJA5' />
                             <SkillItem textClass='education-text' nameClass='education-name' name='User Experience Nanodegree' sub='Udacity 2022' certficate={two} link='https://www.udacity.com/certificate/MKKTDJA5' />
                             <SkillItem textClass='education-text' nameClass='education-name' name='UX Design Fundamentals' sub='Mhara-Tech 2022' certficate={three} link='https://maharatech.gov.eg/mod/customcert/view.php?id=9542&downloadown=1' />
                             <SkillItem textClass='education-text' nameClass='education-name' name='Google UX Design Professional' sub='Coursera 2023' certficate={four} link='https://coursera.org/verify/WBGJ86PNSBKQ' />
-                        </div>
-                        <div className='skills-group' ref={secondGroupRef} >
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, x: 500 }}
+                            transition={{ duration: 0.7, delay: 0.3 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            className='skills-group' ref={secondGroupRef} >
                             <SkillItem textClass='skill-text' nameClass='skill-name' name='FIGMA' sub='01' icon={Figma} />
                             <SkillItem textClass='skill-text' nameClass='skill-name' name='SKETCH' sub='02' icon={Sketch} />
                             <SkillItem textClass='skill-text' nameClass='skill-name' name='ADOBE XD' sub='03' icon={AdobeXD} />
                             <SkillItem textClass='skill-text' nameClass='skill-name' name='ADOBE ILLUSTRATOR' sub='04' icon={AdobeIllustrator} />
-                        </div>
+                        </motion.div>
                     </div>
-                    <div className='counters-container'>
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        transition={{ duration: 0.7, delay: 0.3 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className='counters-container'>
                         <img src={CounterOne} alt={CounterOne} />
                         <img src={CounterTwo} alt={CounterTwo} />
                         <img src={CounterThree} alt={CounterThree} />
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </div>
@@ -228,17 +250,16 @@ function PortfolioSection() {
     return (
         <div className='portfolio-container' id='Portfolio'>
             <div className='section-header-container'>
-                <p className='section-header'>Portfolio & Projects</p>
-                <p className='section-sub-header'>Latest projects</p>
+                <SectionHeader header='Portfolio & Projects' sub='Latest projects' />
             </div>
             <div className='portfolio-cards-container'>
-                <PortfolioCard gridArea='1 / 1 / 2 / 2' projectName='Project Name' projectImage={PortfolioCardOne} />
-                <PortfolioCard gridArea='1 / 2 / 3 / 4' projectName='Project Name' projectImage={PortfolioCardTwo} />
-                <PortfolioCard gridArea='1 / 4 / 3 / 5' projectName='Project Name' projectImage={PortfolioCardThree} />
-                <PortfolioCard gridArea='2 / 1 / 3 / 2' projectName='Project Name' projectImage={PortfolioCardFour} />
-                <PortfolioCard gridArea='3 / 1 / 4 / 2' projectName='Project Name' projectImage={PortfolioCardFive} />
-                <PortfolioCard gridArea='3 / 2 / 4 / 3' projectName='Project Name' projectImage={PortfolioCardSix} />
-                <PortfolioCard gridArea='3 / 3 / 4 / 5' projectName='Project Name' projectImage={PortfolioCardSeven} />
+                <PortfolioCard gridArea='1 / 1 / 2 / 2' delay={1} projectName='Nike App Mockup' link='https://www.behance.net/gallery/164852187/Nike-App-Mockup' projectImage={PortfolioCardOne} />
+                <PortfolioCard gridArea='1 / 2 / 3 / 4' delay={0.5} projectName='Sosurbari Restaurant Website' link='https://www.behance.net/gallery/194448341/Sosurbari-Restaurant-Website' projectImage={PortfolioCardTwo} />
+                <PortfolioCard gridArea='1 / 4 / 3 / 5' delay={0.7} projectName='Sosurbari Restaurant Website' link='https://www.behance.net/gallery/194278205/Sosurbari-Restaurant-Website' projectImage={PortfolioCardThree} />
+                <PortfolioCard gridArea='2 / 1 / 3 / 2' delay={1.3} projectName='Project Name' link='' projectImage={PortfolioCardFour} />
+                <PortfolioCard gridArea='3 / 1 / 4 / 2' delay={0.3} projectName='Project Name' link='' projectImage={PortfolioCardFive} />
+                <PortfolioCard gridArea='3 / 2 / 4 / 3' delay={1.4} projectName='Travel Agency Booking website' link='https://www.behance.net/gallery/169207495/Travel-Agency-Booking-website' projectImage={PortfolioCardSix} />
+                <PortfolioCard gridArea='3 / 3 / 4 / 5' delay={0.9} projectName='Easter Co Law Firm' link='https://www.behance.net/gallery/190985241/Easter-Co-Law-Firm' projectImage={PortfolioCardSeven} />
             </div>
         </div>
     )
@@ -320,16 +341,19 @@ function ClientsComments() {
             <img src={wave2} alt='wave2' className='wave2' />
             <div className='clients-container' id='Testimonial'>
                 <div className='section-header-container'>
-                    <p className='section-header'>What Clients Say</p>
-                    <p className='section-sub-header'>Testimonials</p>
+                    <SectionHeader header='What Clients Say' sub='Testimonials' />
                 </div>
-                <div className='comments-container'>
+                <motion.div
+                    initial={{ opacity: 0, y: 200 }}
+                    transition={{ duration: 0.7, delay: 0.3 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    className='comments-container'>
                     <ClientComment personImage={clientOne} personName='Aziz Ben Naif' personTitle='CEO, AZ IT' comment='Working with Fawzi was an exceptional experience! His understanding of project details was outstanding, and the results exceeded our expectations. I highly recommend him to anyone looking for engaging and effective design solutions' />
                     <ClientComment personImage={clientTwo} personName='Charlotte Kelly' personTitle='Manager, TechGropse' comment='Fawzi is the best at what he does! His designs are clean, innovative, and user-friendly. He truly added value to our mobile app and received praise from all users.' active={true} />
                     <ClientComment personImage={clientThree} personName='Ibrahim Elhassan' personTitle='CEO, One Solution' comment='Fawzi has a unique eye for design and consistently turns ideas into creative realities. His professionalism and prompt responses made working with him a real pleasure.' />
                     <ClientComment personImage={clientFour} personName='Saghar Behjati' personTitle='Ui/Ux Designer' comment='I am impressed by Fawzi’s passion and his attention to detail. Every project we collaborate on turns out better than I could have ever expected. I can’t wait for our future projects.' />
                     <ClientComment personImage={clientFive} personName='Matt Bauman' personTitle='Manger, Numero' comment='Finding a designer who genuinely listens and understands your vision is outstanding. The delivered designs were exceptional, and the willingness to adapt and tweak ensured our complete satisfaction. Highly recommended for anyone seeking a distinguished design experience.' />
-                </div>
+                </motion.div>
             </div>
             <img src={wave3} alt='wave3' className='wave3' />
         </>
@@ -360,8 +384,7 @@ function PricingSection() {
     return (
         <div className='pricing-container' id='Services'>
             <div className='section-header-container'>
-                <p className='section-header'>Pricing</p>
-                <p className='section-sub-header'>Advantage</p>
+                <SectionHeader header='Pricing' sub='Advantage' />
                 <input className="react-switch-checkbox" id={`pricing-switch`} type="checkbox" value={switchState} onChange={() => { setSwitchState(!switchState) }} />
                 <label className="react-switch-label" htmlFor={`pricing-switch`}>
                     <p className='label-switch-text'>Per Time</p>
@@ -370,15 +393,14 @@ function PricingSection() {
                 </label>
             </div>
             <div className='pricing-group' ref={firstGroupRef} >
-                <PricingCard head='Screen' sub='Pay per screen' note='Cancel Anytime' noteType='text' price='$5~10/Screen' priceType='price' btnType='normal' />
-                <PricingCard head='Project' sub='Pay per project' note='Cancel Anytime' noteType='text' price='$250/Project' priceType='price' btnType='normal' />
-                <PricingCard head='Not Sure?' sub='Check the skill' note='You can order' noteType='text' price='1 free task' priceType='text' btnType='trans' />
+                <PricingCard head='Screen' sub='Pay per screen' note='Cancel Anytime' noteType='text' price='$5~10/Screen' priceType='price' btnType='normal' delay={0.3} />
+                <PricingCard head='Project' sub='Pay per project' note='Cancel Anytime' noteType='text' price='$250/Project' priceType='price' btnType='normal' delay={0.7} />
+                <PricingCard head='Not Sure?' sub='Check the skill' note='You can order' noteType='text' price='1 free task' priceType='text' btnType='trans' delay={1} />
             </div>
             <div className='pricing-group' ref={secondGroupRef} >
-                <PricingCard head='1 Month' sub='Part time' note='Cancel Anytime' noteType='text' price='$500/mo' priceType='price' btnType='normal' />
-                <PricingCard head='1 Month' sub='Full time' note=' Save $200' noteType='round' price='$800/mo' priceType='price' btnType='normal' />
-                <PricingCard head='1 Year' sub='Paid monthly' note='Save $600' noteType='round' price='$9000/yr' priceType='price' btnType='normal' />
-
+                <PricingCard head='1 Month' sub='Part time' note='Cancel Anytime' noteType='text' price='$500/mo' priceType='price' btnType='normal' delay={0.3} />
+                <PricingCard head='1 Month' sub='Full time' note=' Save $200' noteType='round' price='$800/mo' priceType='price' btnType='normal' delay={0.7} />
+                <PricingCard head='1 Year' sub='Paid monthly' note='Save $600' noteType='round' price='$9000/yr' priceType='price' btnType='normal' delay={1} />
             </div>
         </div>
     )
@@ -387,19 +409,24 @@ function HireMeSection() {
     return (
         <div className='hire-container' id='Contact'>
             <img className='hire-cover' src={HireMe} alt='Hire Me' />
-            <div className='hire-text'>
+            <motion.div
+                initial={{ opacity: 0, x: -200, y: '-70%' }}
+                whileInView={{ opacity: 1, x: '20%', y: '-70%' }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className='hire-text'>
                 <h2>Have a Project?</h2>
                 <h1>let's work together</h1>
                 <span>get in touch<span></span></span>
-            </div>
+            </motion.div>
         </div>
     )
 }
 function FooterSection() {
+    const { setCursorSize } = useCursor()
     return (
         <footer className='footer-container'>
             <div className='footer-text'>
-                <div><h1>fawzi ui ux</h1></div>
+                <div><h1 onMouseEnter={() => { setCursorSize('70px') }} onMouseLeave={() => { setCursorSize('0px') }}>fawzi ui ux</h1></div>
                 <div>
                     <h2>fast links</h2>
                     <ul>
@@ -413,7 +440,7 @@ function FooterSection() {
                 </div>
                 <div className='footer-contact'>
                     <h2>contact us</h2>
-                    <p><FontAwesomeIcon icon="fa-solid fa-user" /><a href={resume}>View CV</a></p>
+                    <p><FontAwesomeIcon icon="fa-regular fa-file-pdf" /><a href={resume} target='_blanc'>View CV</a></p>
                     <p><FontAwesomeIcon icon="fa-solid fa-phone" /><a href='https://wa.me/201143637341' target='_blanc'>+20 114 363 7341</a></p>
                     <p><FontAwesomeIcon icon="fa-regular fa-envelope" /><a href='mailto:fawzisayed1209@gmail.com'>fawzisayed1209@gmail.com</a></p>
                 </div>

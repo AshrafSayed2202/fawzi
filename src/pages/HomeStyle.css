@@ -140,15 +140,17 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 70px 0;
+    padding: 120px 0 70px;
 }
 .section-header{
     font-size: 4.5em;
     font-weight: bold;
+    text-align: center;
 }
 .section-sub-header{
     font-size: 2em;
     font-weight: 100;
+    text-align: center;
 }
 .react-switch-checkbox {
     height: 0;
@@ -294,7 +296,6 @@ body{
 .skills-group{
     position: relative;
     width: 100%;
-    transition: 0.3s;
     opacity: 0;
     display: none;
     min-height: 425px;
@@ -726,6 +727,8 @@ body{
     text-transform: uppercase;
     margin: 0;
     font-size: 2.5em;
+    cursor: default;
+    display: inline-block;
 }
 .footer-text h2{
     text-transform: capitalize;
@@ -771,9 +774,16 @@ body{
 }
 .footer-socials a{
     font-size: 2em;
-    margin:20px;
+    margin:10px;
+    padding: 10px;
 }
-
+.footer-socials a::after{
+    height: 100%;
+    mix-blend-mode: difference;
+    border-radius: 50px;
+    border-bottom-left-radius: 0%;
+    border-top-left-radius: 0%;
+}
 .copyright{
     width: 90%;
     margin: auto;

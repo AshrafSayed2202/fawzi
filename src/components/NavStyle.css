@@ -36,6 +36,14 @@ body{
 .logo:hover{
     transform: scale(1.4);
 }
+.logo a{
+    text-decoration: none;
+    transition:all 0.3s;
+    color: #111;
+}
+.scrolled .logo a{
+    color: #e9e9e7;
+}
 .navbar li{
     transition: 0.3s;
     position: relative;
@@ -119,6 +127,14 @@ body{
 .email:hover::after{
     right: 0%;
 }
+.email a{
+    color: #111;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+.scrolled .email a{
+    color: #e9e9e7;
+}
 .magnet-btn{
     display: flex;
     justify-content: center;
@@ -139,4 +155,165 @@ body{
 .scrolled .icon{
     color: #e9e9e7;
     border-color: #e9e9e7;
+}
+/* Nav Menu */
+.menu-half{
+    width: 50%;
+    height: 0vh;
+    transition: 0.3s ease-out;
+    position: fixed;
+    overflow: hidden;
+}
+.right-menu{
+    background-color: #1a1a1a;
+    bottom: 0;
+    right: 0;
+}
+.left-menu{
+    background-color: #111;
+    top: 0;
+    left: 0;
+}
+.menu-half.active{
+    height: 100vh;
+    padding: 30px 90px;
+}
+.close-menu{
+    color: #e9e9e7;
+    position: relative;
+    font-size: 2em;
+    cursor: pointer;
+    left: 85%;
+    opacity: 0.7;
+    display: inline-flex;
+    align-items: center;
+    transition: 0.4s;
+}
+.close-menu div{
+    overflow: hidden;
+    margin-right: 5px;
+}
+.close-menu div p{
+    font-size: 0.5em;
+    transition: 0.4s;
+    transform: translateX(100%);
+    font-weight: 200;
+}
+.close-menu:hover{
+    opacity: 1;
+}
+.close-menu:hover div p{
+    transform: translateX(0%);
+}
+.close-left{
+    display: none;
+}
+.menu-logo{
+    font-size: 2em;
+    cursor: pointer;
+    padding: 5px;
+    font-family: "Audiowide";
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    display: inline-block;
+}
+.menu-logo a{
+    text-decoration: none;
+    color: #e9e9e7;
+}
+.left-menu ul{
+    margin-top: auto;
+}
+.left-menu ul:hover li{
+    opacity: 0.3;
+}
+.left-menu ul li{
+    list-style: none;
+    border-bottom: 1px solid #eeeeee3a;
+    padding-bottom: 10px;
+    transition: 0.3s;
+}
+.left-menu ul li:last-child{
+    border: none;
+}
+.left-menu ul li:hover{
+    opacity: 1;
+}
+.left-menu ul li a{
+    text-decoration: none;
+    color: #e9e9e7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 200;
+}
+.left-menu ul li a span{
+    font-size: 5em;
+}
+.left-menu ul li a span span{
+    font-size: 16px;
+    transform: rotate(-90deg);
+    display: inline-block;
+    margin-right: 10px;
+}
+.left-menu ul li a span:nth-child(2){
+    font-size: 5em;
+    font-weight: 200;
+}
+
+.right-menu{
+    font-weight: normal;
+}
+.right-menu a{
+    color: #e9e9e7;
+    text-decoration: none;
+}
+.right-menu ul li{
+    list-style: none;
+    position: relative;
+}
+.right-menu ul li::before{
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #e9e9e7;
+    top: 50%;
+    left: -4%;
+}
+.right-menu ul li a{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    padding-bottom: 3px;
+    font-size: 3em;
+}
+.right-menu ul li a::after{
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: #eee;
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    right: 100%;
+    transition: 0.3s ease-in-out;
+}
+.right-menu ul li a:hover::after{
+    right: 0%;
+}
+.right-menu .menu-contacts{
+    text-align: end;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.right-menu-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 100px 0;
+    height:fill;
 }

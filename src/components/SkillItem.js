@@ -38,7 +38,14 @@ function SkillItem(props) {
             <>
                 {props.nameClass === 'skill-name' ?
                     <img src={props.icon} alt={props.icon} /> :
-                    <a href={props.link} target='_blanc'><FontAwesomeIcon className='contact-icon certficate-btn' icon="fa-solid fa-arrow-right" /></a>
+                    <a href={props.link} target='_blanc'>
+                        <FontAwesomeIcon
+                            className='contact-icon certficate-btn'
+                            icon="fa-solid fa-arrow-right"
+                            onMouseEnter={() => { changeCursorSize('60px') }}
+                            onMouseLeave={() => { changeCursorSize('0px') }}
+                        />
+                    </a>
                 }
             </>
         </div>

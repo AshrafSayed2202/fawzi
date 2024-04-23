@@ -1,8 +1,12 @@
 import React from 'react'
-
+import { motion } from 'framer-motion';
 function PricingCard(props) {
     return (
-        <div className='pricing-card'>
+        <motion.div
+            initial={{ opacity: 0, y: 150 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: props.delay }}
+            className='pricing-card'>
             <div className='pricing-text'>
                 <div>
                     <p className='pricing-header'>{props.head}</p>
@@ -14,7 +18,7 @@ function PricingCard(props) {
                 </div>
             </div>
             <div className={props.btnType === 'normal' ? 'pricing-btn' : 'pricing-btn trans'}>{props.btnType === 'normal' ? 'Get Started' : 'Free Skill Check'}</div>
-        </div>
+        </motion.div>
     )
 }
 
