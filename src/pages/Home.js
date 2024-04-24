@@ -52,6 +52,64 @@ import wave3 from '../assets/wave3.svg'
 import resume from '../assets/Resume.pdf'
 import SectionHeader from '../components/SectionHeader';
 
+import formWP from '../assets/formwp.png'
+import closeForm from '../assets/subtract.png'
+import rocketForm from '../assets/light.png'
+import verified from '../assets/verified.png'
+
+function FormPopup(props) {
+    function disableScroll() {
+        document.body.style.overflow = "hidden";
+        document.body.style.userSelect = "none";
+    }
+    function enableScroll() {
+        document.body.style.overflow = "auto";
+        document.body.style.overflowX = "hidden";
+        document.body.style.userSelect = "auto";
+    }
+    React.useEffect(() => {
+        disableScroll()
+    }, [])
+    return (
+        <div className='form-container'>
+            <motion.img
+                initial={{ opacity: 0 }}
+                transition={{ duration: 0.7 }}
+                whileInView={{ opacity: 1 }}
+                src={formWP} alt='formWP' id='contact-form-wp' draggable='false' />
+            <motion.form
+                initial={{ y: -500, opacity: 0 }}
+                transition={{ duration: 0.7, delay: 1 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                id="contact-form" onSubmit={(e) => { e.preventDefault() }}
+            >
+                <img src={closeForm} alt='close-form' className='close-form' onClick={() => { enableScroll(); props.toggleForm() }} />
+                <h1>Let's connect </h1>
+                <h3>Get in Touch Us and Let Our Combined Creativity Shine.</h3>
+                <div className="personal">
+                    <div className="input-field">
+                        <input type="text" name="first-name" placeholder='First Name' />
+                    </div>
+                    <div className="input-field">
+                        <input type="text" name="last-name" placeholder='Last Name' />
+                    </div>
+                </div>
+                <div className="input-field">
+                    <input type="email" name="email" placeholder='Email' />
+                </div>
+                <div className="input-field">
+                    <input type="text" name="phone" placeholder='Phone Number' />
+                </div>
+                <div className="input-field">
+                    <textarea type="text" name="text" rows="5" cols="50" placeholder='message' />
+                </div>
+                <div className="submit">
+                    <button type='submit'><img src={rocketForm} alt='rocket-form' className='plane-first' /> Send it to craft the Magic <img src={rocketForm} alt='rocket-form' className='plane-second' /></button>
+                </div>
+            </motion.form>
+        </div>
+    )
+}
 function HeroSection() {
     const NameSection = React.useRef()
     const FigureRef = React.useRef()
@@ -149,7 +207,7 @@ function AboutSection() {
         </div >
     )
 }
-function SkillsAndEducation() {
+function SkillsAndEducation(props) {
     const [switchState, setSwitchState] = React.useState(false);
     const firstGroupRef = React.useRef(null)
     const secondGroupRef = React.useRef(null)
@@ -205,8 +263,8 @@ function SkillsAndEducation() {
                         transition={{ duration: 0.7, delay: 1 }}
                         whileInView={{ opacity: 1 }}
                         className="react-switch-label figure-switch">
-                        <p className='label-switch-text figure-switch-btn active' onMouseEnter={() => { figureSwitchHover("Portfolio") }}>Portfolio<FontAwesomeIcon className='figure-switch-icon' icon="fa-solid fa-arrow-right" /></p>
-                        <p className='label-switch-text figure-switch-btn' onMouseEnter={() => { figureSwitchHover("Hire me") }} >Hire me<FontAwesomeIcon className='figure-switch-icon' icon="fa-solid fa-arrow-right" /></p>
+                        <p className='label-switch-text figure-switch-btn active' onMouseEnter={() => { figureSwitchHover("Portfolio") }} onClick={() => { document.getElementById('Portfolio').scrollIntoView() }}>Portfolio<FontAwesomeIcon className='figure-switch-icon' icon="fa-solid fa-arrow-right" /></p>
+                        <p className='label-switch-text figure-switch-btn' onMouseEnter={() => { figureSwitchHover("Hire me") }} onClick={() => { props.toggleForm() }}>Hire me<FontAwesomeIcon className='figure-switch-icon' icon="fa-solid fa-arrow-right" /></p>
                     </motion.div>
                 </motion.div>
                 <div className='skills-text-section'>
@@ -256,8 +314,8 @@ function PortfolioSection() {
                 <PortfolioCard gridArea='1 / 1 / 2 / 2' delay={1} projectName='Nike App Mockup' link='https://www.behance.net/gallery/164852187/Nike-App-Mockup' projectImage={PortfolioCardOne} />
                 <PortfolioCard gridArea='1 / 2 / 3 / 4' delay={0.5} projectName='Sosurbari Restaurant Website' link='https://www.behance.net/gallery/194448341/Sosurbari-Restaurant-Website' projectImage={PortfolioCardTwo} />
                 <PortfolioCard gridArea='1 / 4 / 3 / 5' delay={0.7} projectName='Sosurbari Restaurant Website' link='https://www.behance.net/gallery/194278205/Sosurbari-Restaurant-Website' projectImage={PortfolioCardThree} />
-                <PortfolioCard gridArea='2 / 1 / 3 / 2' delay={1.3} projectName='Project Name' link='' projectImage={PortfolioCardFour} />
-                <PortfolioCard gridArea='3 / 1 / 4 / 2' delay={0.3} projectName='Project Name' link='' projectImage={PortfolioCardFive} />
+                <PortfolioCard gridArea='2 / 1 / 3 / 2' delay={1.3} projectName='Check Quick Attendance App' link='https://www.behance.net/gallery/170062939/Bank-Card-Landing-Page' projectImage={PortfolioCardFour} />
+                <PortfolioCard gridArea='3 / 1 / 4 / 2' delay={0.3} projectName='Vr online store' link='https://www.behance.net/gallery/170062939/Bank-Card-Landing-Page' projectImage={PortfolioCardFive} />
                 <PortfolioCard gridArea='3 / 2 / 4 / 3' delay={1.4} projectName='Travel Agency Booking website' link='https://www.behance.net/gallery/169207495/Travel-Agency-Booking-website' projectImage={PortfolioCardSix} />
                 <PortfolioCard gridArea='3 / 3 / 4 / 5' delay={0.9} projectName='Easter Co Law Firm' link='https://www.behance.net/gallery/190985241/Easter-Co-Law-Firm' projectImage={PortfolioCardSeven} />
             </div>
@@ -393,19 +451,19 @@ function PricingSection() {
                 </label>
             </div>
             <div className='pricing-group' ref={firstGroupRef} >
-                <PricingCard head='Screen' sub='Pay per screen' note='Cancel Anytime' noteType='text' price='$5~10/Screen' priceType='price' btnType='normal' delay={0.3} />
-                <PricingCard head='Project' sub='Pay per project' note='Cancel Anytime' noteType='text' price='$250/Project' priceType='price' btnType='normal' delay={0.7} />
+                <PricingCard head='Screen' sub='Pay per screen' note='Cancel Anytime' noteType='text' price='5~10/Screen' priceType='price' btnType='normal' delay={0.3} />
+                <PricingCard head='Project' sub='Pay per project' note='Cancel Anytime' noteType='text' price='250/Project' priceType='price' btnType='normal' delay={0.7} />
                 <PricingCard head='Not Sure?' sub='Check the skill' note='You can order' noteType='text' price='1 free task' priceType='text' btnType='trans' delay={1} />
             </div>
             <div className='pricing-group' ref={secondGroupRef} >
-                <PricingCard head='1 Month' sub='Part time' note='Cancel Anytime' noteType='text' price='$500/mo' priceType='price' btnType='normal' delay={0.3} />
-                <PricingCard head='1 Month' sub='Full time' note=' Save $200' noteType='round' price='$800/mo' priceType='price' btnType='normal' delay={0.7} />
-                <PricingCard head='1 Year' sub='Paid monthly' note='Save $600' noteType='round' price='$9000/yr' priceType='price' btnType='normal' delay={1} />
+                <PricingCard head='1 Month' sub='Part time' note='Cancel Anytime' noteType='text' price='500/mo' priceType='price' btnType='normal' delay={0.3} />
+                <PricingCard head='1 Month' sub='Full time' note=' Save $200' noteType='round' price='800/mo' priceType='price' btnType='normal' delay={0.7} />
+                <PricingCard head='1 Year' sub='Paid monthly' note='Save $600' noteType='round' price='9000/yr' priceType='price' btnType='normal' delay={1} />
             </div>
         </div>
     )
 }
-function HireMeSection() {
+function HireMeSection(props) {
     return (
         <div className='hire-container' id='Contact'>
             <img className='hire-cover' src={HireMe} alt='Hire Me' />
@@ -416,7 +474,7 @@ function HireMeSection() {
                 className='hire-text'>
                 <h2>Have a Project?</h2>
                 <h1>let's work together</h1>
-                <span>get in touch<span></span></span>
+                <span onClick={() => { props.toggleForm() }}>get in touch<span></span></span>
             </motion.div>
         </div>
     )
@@ -466,18 +524,23 @@ function Home() {
             opacity: 1
         }, { duration: 1200, fill: "forwards" })
     })
+    const [formShow, setFormShow] = React.useState(false)
+    function toggleForm() {
+        setFormShow(!formShow)
+    }
     return (
         <CursorProvider>
             <Cursor />
             <div ref={homeRef} style={{ opacity: 0 }}>
+                {formShow ? <FormPopup toggleForm={toggleForm} /> : null}
                 <Nav />
                 <HeroSection />
                 <AboutSection />
-                <SkillsAndEducation />
+                <SkillsAndEducation toggleForm={toggleForm} />
                 <PortfolioSection />
                 <ClientsComments />
                 <PricingSection />
-                <HireMeSection />
+                <HireMeSection toggleForm={toggleForm} />
                 <FooterSection />
             </div>
         </CursorProvider>

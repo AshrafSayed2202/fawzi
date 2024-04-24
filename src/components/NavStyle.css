@@ -309,6 +309,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 15px;
+    color: #e9e9e7;
 }
 .right-menu-text{
     display: flex;

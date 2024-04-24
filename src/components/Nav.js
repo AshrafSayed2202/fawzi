@@ -90,7 +90,7 @@ function Nav() {
                     <FontAwesomeIcon icon="fa-solid fa-xmark" />
                 </span>
                 <div className="menu-logo" onClick={() => { setTimeout(() => { closeMenu() }, 300); }} onMouseEnter={(e) => { changeCursorSize('70px') }} onMouseLeave={(e) => { changeCursorSize('0px') }} ><a href="#Home">fuiux</a></div>
-                <ul onClick={() => { setTimeout(() => { closeMenu() }, 300); }}>
+                <ul onClick={() => { setTimeout(() => { closeMenu() }, 500); }}>
                     <li>
                         <a href="#Home">
                             <span><span>01</span>Home</span>
