@@ -612,14 +612,14 @@ function Home() {
             <div ref={homeRef} style={{ opacity: 0 }}>
                 {formShow ? <FormPopup toggleForm={toggleForm} /> : null}
                 <Nav toggleForm={toggleForm} />
-                {/* <HeroSection />
+                <HeroSection />
                 <AboutSection />
                 <SkillsAndEducation toggleForm={toggleForm} />
                 <PortfolioSection />
                 <ClientsComments />
                 <PricingSection />
                 <HireMeSection toggleForm={toggleForm} />
-                <FooterSection /> */}
+                <FooterSection />
             </div>
         </CursorProvider>
     )
