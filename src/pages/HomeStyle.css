@@ -39,15 +39,17 @@ body{
 }
 .first-name{
     transform: translateX(-20%);
+    top: -150px;
 }
 .second-name{
     transform: translateX(20%);
+    bottom: -150px;
 }
 .first-name,
 .second-name{
     position: relative;
     opacity: 0;
-    transition: 0.3s;
+    display: inline-block;
 }
 .name-letter{
     transition: 0.4s;
@@ -127,7 +129,7 @@ body{
     padding: 5px;
 }
 .contact-icon{
-    rotate: -45deg;
+    transform: rotate(-45deg);
     font-size: 1.5em;
 }
 /* Skills & Education section */
@@ -181,7 +183,7 @@ body{
     transition: 0.3s;
 }
 .react-switch-label:hover{
-    scale: 1.1;
+    transform: scale(1.1);
 }
 .label-switch-text{
     width: 50%;
@@ -258,9 +260,6 @@ body{
     width: auto;
     background-color: #eeeeee25;
     margin-bottom: 70px;
-}
-.figure-switch:hover{
-    scale: 1;
 }
 .figure-switch-btn{
     padding: 15px;
@@ -385,7 +384,7 @@ body{
     transition: 0.3s;
 }
 .certficate-btn:hover{
-    transform: rotate(45deg);
+    transform: rotate(0deg);
 }
 .counters-container{
     border-top: 1px solid #eeeeee63;
@@ -417,7 +416,7 @@ body{
     position: relative;
 }
 .portfolio-card:hover .portfolio-card-image{
-    scale: 1.05;
+    transform: scale(1.05);
     opacity: 0.5;
 }
 .portfolio-card-image{
@@ -823,7 +822,7 @@ body{
     left: 0;
     z-index: 2;
 }
-#contact-form{
+.contact-form{
     z-index: 3;
     position: relative;
     background: rgba(38, 38, 38, 0.50);
@@ -841,17 +840,17 @@ body{
     transition: 0.3s;  
 }
 .close-form:hover{
-    scale: 1.1;
+    transform: scale(1.1);
     opacity: 1;
 }
-#contact-form .personal{
+.contact-form .personal{
     display: flex;
     gap: 15px;
 }
-#contact-form .personal .input-field{
+.contact-form .personal .input-field{
     width: 50%;
 }
-#contact-form .input-field{
+.contact-form .input-field{
     border: 1px solid rgba(255, 255, 255, 0.20);
     background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
@@ -859,23 +858,23 @@ body{
     margin-top: 15px;
     transition: 0.3s;
 }
-#contact-form .input-field input,
-#contact-form .input-field textarea{
+.contact-form .input-field input,
+.contact-form .input-field textarea{
     border: none;
     outline: none;
     background: none;
     color: #e9e9e7;
 }
-#contact-form .input-field input{
+.contact-form .input-field input{
     width: 100%;
 }
-#contact-form .input-field:focus-within{
+.contact-form .input-field:focus-within{
     box-shadow: #7e7e7e 3px 3px 12px;
 }
-#contact-form .input-field textarea{
+.contact-form .input-field textarea{
     resize: none;
 }
-#contact-form button{
+.contact-form button{
     background: linear-gradient(90deg, #763AF5 0%, #A604F2 117.18%);
     border: none;
     outline: none;
@@ -892,39 +891,45 @@ body{
     gap: 8px;
     overflow: hidden;
 }
-#contact-form button .plane-first{
+.contact-form button .plane-first{
     transform: translateX(-150px);
     transition-delay: 0s;
 }
-#contact-form button .plane-second{
+.contact-form button .plane-second{
     transition-delay: 0.5s;
 }
 .plane-first,.plane-second{
     transition: 0.7s;
 }
-#contact-form button:hover{
+.contact-form button:hover{
     box-shadow: #7e7e7e 5px 5px 15px;
 }
-#contact-form button:hover .plane-first{
+.contact-form button:hover .plane-first{
     transition-delay: 0.5s;
     transform: translateX(0px);
 }
-#contact-form button:hover .plane-second{
+.contact-form button:hover .plane-second{
     transition-delay: 0s;
     transform: translateX(150px);
 
 }
-#contact-form h1,
-#contact-form h3{
+.contact-form h1,
+.contact-form h3{
     color: #e9e9e7;
 }
-#contact-form h1{
+.contact-form h1{
     font-size: 3em;
     margin: 0;
     margin-bottom: 15px;
 }
-#contact-form h3{
+.contact-form h3{
     margin-bottom: 40px;
     font-weight: 200;
     opacity: 0.7;
+}
+.thank-message{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

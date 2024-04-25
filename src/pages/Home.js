@@ -57,7 +57,10 @@ import closeForm from '../assets/subtract.png'
 import rocketForm from '../assets/light.png'
 import verified from '../assets/verified.png'
 
+import { useForm, ValidationError } from '@formspree/react';
 function FormPopup(props) {
+    const [state, handleSubmit] = useForm("xnqelrkz");
+
     function disableScroll() {
         document.body.style.overflow = "hidden";
         document.body.style.userSelect = "none";
@@ -70,6 +73,26 @@ function FormPopup(props) {
     React.useEffect(() => {
         disableScroll()
     }, [])
+    if (state.succeeded) {
+        return (
+            <div style={{ cursor: 'pointer' }} className='form-container' onClick={() => { enableScroll(); props.toggleForm() }}>
+                <motion.img
+                    initial={{ opacity: 0 }}
+                    transition={{ duration: 0.7 }}
+                    whileInView={{ opacity: 1 }}
+                    src={formWP} alt='formWP' id='contact-form-wp' draggable='false' />
+                <motion.div
+                    initial={{ y: -500, opacity: 0 }}
+                    transition={{ duration: 0.7, delay: 1 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    className='contact-form thank-message'>
+                    <img src={verified} alt='verified' />
+                    <h1>Thank you for reaching out!</h1>
+                    <h3>appreciate your interest and will be in touch with you soon.</h3>
+                </motion.div>
+            </div>
+        )
+    }
     return (
         <div className='form-container'>
             <motion.img
@@ -81,31 +104,81 @@ function FormPopup(props) {
                 initial={{ y: -500, opacity: 0 }}
                 transition={{ duration: 0.7, delay: 1 }}
                 whileInView={{ y: 0, opacity: 1 }}
-                id="contact-form" onSubmit={(e) => { e.preventDefault() }}
+                className="contact-form" onSubmit={handleSubmit}
             >
                 <img src={closeForm} alt='close-form' className='close-form' onClick={() => { enableScroll(); props.toggleForm() }} />
                 <h1>Let's connect </h1>
                 <h3>Get in Touch Us and Let Our Combined Creativity Shine.</h3>
-                <div className="personal">
+                <motion.div
+                    initial={{ y: -50, opacity: 0 }}
+                    transition={{ duration: 0.7, delay: 0.3 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    className="personal">
                     <div className="input-field">
-                        <input type="text" name="first-name" placeholder='First Name' />
+                        <input type="text" name="first-name" placeholder='First Name' id='first-name' />
                     </div>
+                    <ValidationError
+                        prefix="first-name"
+                        field="first-name"
+                        errors={state.errors}
+                    />
                     <div className="input-field">
-                        <input type="text" name="last-name" placeholder='Last Name' />
+                        <input type="text" name="last-name" placeholder='Last Name' id='last-name' />
                     </div>
-                </div>
-                <div className="input-field">
-                    <input type="email" name="email" placeholder='Email' />
-                </div>
-                <div className="input-field">
-                    <input type="text" name="phone" placeholder='Phone Number' />
-                </div>
-                <div className="input-field">
-                    <textarea type="text" name="text" rows="5" cols="50" placeholder='message' />
-                </div>
-                <div className="submit">
-                    <button type='submit'><img src={rocketForm} alt='rocket-form' className='plane-first' /> Send it to craft the Magic <img src={rocketForm} alt='rocket-form' className='plane-second' /></button>
-                </div>
+                    <ValidationError
+                        prefix="last-name"
+                        field="last-name"
+                        errors={state.errors}
+                    />
+                </motion.div>
+                <motion.div
+                    initial={{ y: -50, opacity: 0 }}
+                    transition={{ duration: 0.7, delay: 0.6 }}
+                    whileInView={{ y: 0, opacity: 1 }}>
+                    <div className="input-field">
+                        <input type="email" name="email" placeholder='Email' id='email' />
+                    </div>
+                    <ValidationError
+                        prefix="email"
+                        field="email"
+                        errors={state.errors}
+                    />
+                </motion.div>
+                <motion.div
+                    initial={{ y: -50, opacity: 0 }}
+                    transition={{ duration: 0.7, delay: 0.9 }}
+                    whileInView={{ y: 0, opacity: 1 }}>
+                    <div className="input-field">
+                        <input type="text" name="phone" placeholder='Phone Number' id='phone' />
+                    </div>
+                    <ValidationError
+                        prefix="phone"
+                        field="phone"
+                        errors={state.errors}
+                    />
+                </motion.div>
+                <motion.div
+                    initial={{ y: -100, opacity: 0 }}
+                    transition={{ duration: 0.7, delay: 2.2 }}
+                    whileInView={{ y: 0, opacity: 1 }}>
+                    <div className="input-field">
+                        <textarea type="text" name="message" rows="5" cols="50" placeholder='message' id='message' />
+                    </div>
+                    <ValidationError
+                        prefix="message"
+                        field="message"
+                        errors={state.errors}
+                    />
+                </motion.div>
+                <motion.div
+                    initial={{ y: 50, opacity: 0 }}
+                    transition={{ duration: 0.7, delay: 2.5 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                >
+                    <div className="submit">
+                        <button disabled={state.submitting} type='submit'><img src={rocketForm} alt='rocket-form' className='plane-first' /> Send it to craft the Magic <img src={rocketForm} alt='rocket-form' className='plane-second' /></button>
+                    </div>
+                </motion.div>
             </motion.form>
         </div>
     )
@@ -166,10 +239,14 @@ function HeroSection() {
                 <motion.span style={{ zIndex: zIndexProgres }} className='first-name' onMouseEnter={(e) => { changeCursorSize('100px') }} onMouseLeave={(e) => { changeCursorSize('0px') }} ><GenerateName name='Fáwzi' /></motion.span>
                 <motion.span style={{ zIndex: zIndexProgres }} className='second-name' onMouseEnter={(e) => { changeCursorSize('100px') }} onMouseLeave={(e) => { changeCursorSize('0px') }}><GenerateName name='Sayéd' /></motion.span>
             </div>
-            <div className='figure-container'>
+            <motion.div
+                initial={{ opacity: 0, x: 500 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7 }}
+                className='figure-container'>
                 <img src={wave1} alt='wave1' className='wave' />
                 <img src={figure} alt='figure' className='figure' />
-            </div>
+            </motion.div>
             <div ref={FigureRef} className='figure-stand'></div>
         </div>
     )
