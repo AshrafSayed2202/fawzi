@@ -58,6 +58,7 @@ import rocketForm from '../assets/light.png'
 import verified from '../assets/verified.png'
 
 import { useForm, ValidationError } from '@formspree/react';
+
 function FormPopup(props) {
     const [state, handleSubmit] = useForm("xnqelrkz");
 
@@ -610,15 +611,15 @@ function Home() {
             <Cursor />
             <div ref={homeRef} style={{ opacity: 0 }}>
                 {formShow ? <FormPopup toggleForm={toggleForm} /> : null}
-                <Nav />
-                <HeroSection />
+                <Nav toggleForm={toggleForm} />
+                {/* <HeroSection />
                 <AboutSection />
                 <SkillsAndEducation toggleForm={toggleForm} />
                 <PortfolioSection />
                 <ClientsComments />
                 <PricingSection />
                 <HireMeSection toggleForm={toggleForm} />
-                <FooterSection />
+                <FooterSection /> */}
             </div>
         </CursorProvider>
     )

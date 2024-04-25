@@ -4,8 +4,8 @@ import "./NavStyle.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from 'framer-motion'
 import { useCursor } from './CursorProvider'
-
-function Nav() {
+import wave4 from '../assets/wave4.svg'
+function Nav(props) {
     const buttonRef = React.useRef(null)
     const navRef = React.useRef(null)
     const containerRef = React.useRef(null)
@@ -65,7 +65,7 @@ function Nav() {
                 <li><a href="#Portfolio">Portfolio</a></li>
                 <li><a href="#Testimonial">Testimonial</a></li>
                 <li><a href="#Services">Pricing</a></li>
-                <li><a href="#Contact">Contact</a></li>
+                <li onClick={() => { props.toggleForm() }}>Contact</li>
             </ul>
             <div className="btn-container" onMouseEnter={(e) => { changeCursorSize('70px') }} onMouseLeave={(e) => { changeCursorSize('0px') }}>
                 <div className="email-container">
@@ -89,8 +89,12 @@ function Nav() {
                     <div><p>CLOSE</p></div>
                     <FontAwesomeIcon icon="fa-solid fa-xmark" />
                 </span>
-                <div className="menu-logo" onClick={() => { setTimeout(() => { closeMenu() }, 300); }} onMouseEnter={(e) => { changeCursorSize('70px') }} onMouseLeave={(e) => { changeCursorSize('0px') }} ><a href="#Home">fuiux</a></div>
-                <ul onClick={() => { setTimeout(() => { closeMenu() }, 500); }}>
+                <div className="menu-logo" onMouseEnter={(e) => { changeCursorSize('70px') }} onMouseLeave={(e) => { changeCursorSize('0px') }} ><a onClick={() => { setTimeout(() => { closeMenu() }, 300); }} href="#Home">fuiux</a></div>
+                <motion.ul
+                    initial={{ opacity: 0, x: -300 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.7, delay: 0.5 }}
+                    onClick={() => { setTimeout(() => { closeMenu() }, 500); }}>
                     <li>
                         <a href="#Home">
                             <span><span>01</span>Home</span>
@@ -127,32 +131,40 @@ function Nav() {
                             <span>+</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#Contact">
+                    <li onClick={() => { props.toggleForm() }}>
+                        <a href="#a" >
                             <span><span>07</span>Contact</span>
                             <span>+</span>
                         </a>
                     </li>
-                </ul>
+                </motion.ul>
             </div>
             <div className="right-menu menu-half">
+                <img style={{ position: 'absolute', bottom: 0, left: 0 }} src={wave4} alt="wave4" />
                 <span className="close-menu close-right" onClick={() => { closeMenu() }}>
                     <div><p>CLOSE</p></div>
                     <FontAwesomeIcon icon="fa-solid fa-xmark" />
                 </span>
                 <div className="right-menu-text">
-                    <div className="menu-contacts">
+                    <motion.div
+                        initial={{ opacity: 0, x: 300 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.7, delay: 0.7 }}
+                        className="menu-contacts">
                         <div><a href="https://wa.me/201143637341" target="_blanc">+20 114 363 7341</a></div>
                         <div><a href="mailto:fawzisayed1209@gmail.com">fawzisayed1209@gmail.com</a></div>
                         <p>If in doubt. reach out.</p>
-                    </div>
+                    </motion.div>
                     <div>
-                        <ul>
+                        <motion.ul
+                            initial={{ opacity: 0, y: 300 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.7 }}>
                             <li><a href="https://www.instagram.com/fawziuiux" target="_blanc">Instagram</a></li>
                             <li><a href="https://www.linkedin.com/in/fawzi-uiux" target="_blanc">Linkedin</a></li>
                             <li><a href="https://www.behance.net/fawziuiux" target="_blanc">Behance</a></li>
                             <li><a href="https://dribbble.com/fawziuiux" target="_blanc">Dribbble</a></li>
-                        </ul>
+                        </motion.ul>
                     </div>
                 </div>
             </div>
