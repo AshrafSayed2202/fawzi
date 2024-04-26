@@ -374,6 +374,7 @@ body{
     padding-left: 40px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .skill-item::before{
     content: '';
@@ -448,6 +449,45 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+@media (width < 1550px) {
+    .counters-container{
+        justify-content: space-evenly;
+    }
+    .counters-container img{
+        width: 25%;
+    }
+}
+@media (width < 1400px) {
+    .skills-figure{
+        display: none;
+    }
+    .skills-text-section{
+        width: 100%;
+    }
+}
+@media (width < 1100px) {
+    .skills-designer-text{
+        display: none;
+    }
+    .skills-educations-container{
+        width: 100%;
+    }
+    .skills-educations-container{
+        border: none;
+    }
+    .skill-item.active::before{
+        display: none;
+    }
+}
+@media (width < 600px) {
+    .skill-name,
+    .education-name{
+        font-size: 1.5em;
+    }
+    .skill-item{
+        padding-left:10px;
+    }
 }
 /* Portfolio */
 .portfolio-container{
@@ -726,14 +766,16 @@ body{
     transform: translate(20%, -70%);
     color: #e9e9e7;
 }
-.hire-text h1{
-    text-transform: uppercase;
-    font-size: 3.5em;
-}
 .hire-text h1,.hire-text h2{
     pointer-events: none;
     user-select: none;
     -webkit-user-select: none;
+    font-weight: 200;
+}
+.hire-text h1{
+    text-transform: uppercase;
+    font-size: 3.5em;
+    font-weight: 400;
 }
 .hire-text>span{
     text-transform: capitalize;
@@ -766,6 +808,11 @@ body{
 .hire-text>span:hover::after{
     transition: 0.3s;
     left: 110%;
+}
+@media (width < 1200px) {
+    .hire-text h1{
+        font-size: 2.5em;
+    }
 }
 /* Footer */
 .footer-container{
