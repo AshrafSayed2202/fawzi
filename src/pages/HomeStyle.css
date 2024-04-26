@@ -858,6 +858,27 @@ body{
     font-weight: bold;
     color: #e9e9e7;
 }
+@media (width < 1000px) {
+    .footer-text{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .footer-text>div{
+        width: auto;
+        margin: auto;
+        margin-top: 50px;
+    }
+}
+@media (width < 600px) {
+    .copyright{
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        text-align: center;
+    }
+}
 /* form */
 .form-container{
     display: flex;
