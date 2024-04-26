@@ -199,6 +199,7 @@ body{
 .menu-half.active{
     height: 100vh;
     padding: 30px 90px;
+    overflow-y: scroll;
 }
 .close-menu{
     color: #e9e9e7;

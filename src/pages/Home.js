@@ -614,12 +614,12 @@ function Home() {
                 <Nav toggleForm={toggleForm} />
                 <HeroSection />
                 <AboutSection />
-                <SkillsAndEducation toggleForm={toggleForm} />
+                {/* <SkillsAndEducation toggleForm={toggleForm} />
                 <PortfolioSection />
                 <ClientsComments />
                 <PricingSection />
                 <HireMeSection toggleForm={toggleForm} />
-                <FooterSection />
+                <FooterSection /> */}
             </div>
         </CursorProvider>
     )
