@@ -471,6 +471,8 @@ function ClientsComments() {
         comments.addEventListener('mousemove', dragging)
         comments.addEventListener('mouseup', dragStop)
         comments.addEventListener('scroll', infiniteScroll)
+        comments.addEventListener('touchend', () => { setTimeout(() => { refreshActiveComment() }, 700); })
+
     }, [])
     return (
         <>
@@ -616,7 +618,7 @@ function Home() {
                 <AboutSection />
                 <SkillsAndEducation toggleForm={toggleForm} />
                 <PortfolioSection />
-                {/* <ClientsComments /> */}
+                <ClientsComments />
                 {/* <PricingSection /> */}
                 {/* <HireMeSection toggleForm={toggleForm} /> */}
                 <FooterSection />

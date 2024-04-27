@@ -145,11 +145,6 @@ body{
     text-align: center;
     font-weight: 100;
 }
-@media (width < 1000px) {
-    .about-title{
-        font-size: 10em;
-    }
-}
 .about-text{
     width: 60%;
     color: #fff;
@@ -157,17 +152,6 @@ body{
     opacity: 0.8;
     margin-bottom: 200px;
     padding-top: 120px;
-}
-@media (width < 1000px) {
-    .about-title{
-        font-size: 7em;
-    }
-    .about-text{
-        width: 80%;
-        margin: 0;
-        margin-bottom: 100px;
-        padding-top: 60px;
-    }
 }
 .greeting{
     font-size: 2.5em;
@@ -185,6 +169,22 @@ body{
 .contact-icon{
     transform: rotate(-45deg);
     font-size: 1.5em;
+}
+@media (width < 1000px) {
+    .about-title{
+        font-size: 10em;
+    }
+}
+@media (width < 1000px) {
+    .about-title{
+        font-size: 7em;
+    }
+    .about-text{
+        width: 80%;
+        margin: 0;
+        margin-bottom: 100px;
+        padding-top: 60px;
+    }
 }
 /* Skills & Education section */
 .skills-container{
@@ -256,7 +256,6 @@ body{
     background: #111;
     border: 1px solid #e9e9e7;
 }
-
 .react-switch-checkbox:checked + .react-switch-label .react-switch-button {
     left: calc(100% - 4px);
     transform: translateX(-100%);
@@ -264,7 +263,6 @@ body{
 .react-switch-label:active .react-switch-button {
     width: 45%;
 }
-/* table */
 .table-container{
     display: flex;
     justify-content: center;
@@ -388,7 +386,8 @@ body{
     transform: translate(-1px,-50%);
     transition: 0.3s;
     opacity: 0;
-}.skill-item.active::before{
+}
+.skill-item.active::before{
     opacity: 1;
 }
 .skill-item::after{
@@ -488,6 +487,17 @@ body{
     .skill-item{
         padding-left:10px;
     }
+    .counters-container{
+        flex-direction: column;
+        height: fill;
+        background-color: #eeeeee0c
+    }
+    .counters-container img{
+        width: 60%;
+    }
+    .table-container::after{
+        display: none;
+    }
 }
 /* Portfolio */
 .portfolio-container{
@@ -551,7 +561,7 @@ body{
     }
     .portfolio-card{
         width: calc(50% - 10px);
-        max-height: 400px;
+        height: 400px;
     }
     .card-name{
         font-size: 1em;
@@ -614,7 +624,7 @@ body{
     scroll-snap-align: start;
 }
 .comment{
-    min-height: 380px;
+    height: 380px;
     text-align: center;
     border: 1px solid #ccc;
     color: #919191;
@@ -624,6 +634,10 @@ body{
     font-size: 1.5em;
     font-weight: 200;
     transition: all 0.4s;
+}
+.comment p{
+    height: 253px;
+    overflow: scroll;
 }
 .active .comment{
     color: #e9e9e7;
@@ -673,6 +687,12 @@ body{
     font-size: 1.2em;
     opacity: 0.7;
     font-weight: 200;
+}
+@media (width < 1100px) {
+    .comments-container{
+        grid-auto-columns: calc(100% - 12.5px);
+        gap: 25px;
+    }
 }
 /* Pricing */
 .pricing-container{
