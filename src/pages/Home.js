@@ -234,15 +234,16 @@ function HeroSection() {
             </motion.div>
         )
     }
+    const windowHeight = window.innerHeight
     return (
-        <div className='here-section' id='Home'>
+        <div className='hero-section' id='Home' style={{ height: windowHeight + 'px' }}>
             <div className='name-container' ref={NameSection}>
                 <motion.span style={{ zIndex: zIndexProgres }} className='first-name' onMouseEnter={(e) => { changeCursorSize('100px') }} onMouseLeave={(e) => { changeCursorSize('0px') }} ><GenerateName name='Fáwzi' /></motion.span>
                 <motion.span style={{ zIndex: zIndexProgres }} className='second-name' onMouseEnter={(e) => { changeCursorSize('100px') }} onMouseLeave={(e) => { changeCursorSize('0px') }}><GenerateName name='Sayéd' /></motion.span>
             </div>
             <motion.div
-                initial={{ opacity: 0, x: 500 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 150 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
                 className='figure-container'>
                 <img src={wave1} alt='wave1' className='wave' />
@@ -348,9 +349,9 @@ function SkillsAndEducation(props) {
                 <div className='skills-text-section'>
                     <div className='skills-educations-container'>
                         <motion.div
-                            initial={{ opacity: 0, x: 500 }}
+                            initial={{ opacity: 0, y: 100 }}
                             transition={{ duration: 0.7, delay: 0.3 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             className='skills-group' ref={firstGroupRef} >
                             <SkillItem textClass='education-text' nameClass='education-name' name='Advanced User Experience Design' sub='Udacity 2022' certficate={one} link='https://www.udacity.com/certificate/MKKTDJA5' />
                             <SkillItem textClass='education-text' nameClass='education-name' name='User Experience Nanodegree' sub='Udacity 2022' certficate={two} link='https://www.udacity.com/certificate/MKKTDJA5' />
@@ -358,9 +359,9 @@ function SkillsAndEducation(props) {
                             <SkillItem textClass='education-text' nameClass='education-name' name='Google UX Design Professional' sub='Coursera 2023' certficate={four} link='https://coursera.org/verify/WBGJ86PNSBKQ' />
                         </motion.div>
                         <motion.div
-                            initial={{ opacity: 0, x: 500 }}
+                            initial={{ opacity: 0, y: 100 }}
                             transition={{ duration: 0.7, delay: 0.3 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             className='skills-group' ref={secondGroupRef} >
                             <SkillItem textClass='skill-text' nameClass='skill-name' name='FIGMA' sub='01' icon={Figma} />
                             <SkillItem textClass='skill-text' nameClass='skill-name' name='SKETCH' sub='02' icon={Sketch} />
@@ -620,7 +621,7 @@ function Home() {
                 <PortfolioSection />
                 <ClientsComments />
                 <PricingSection />
-                {/* <HireMeSection toggleForm={toggleForm} /> */}
+                <HireMeSection toggleForm={toggleForm} />
                 <FooterSection />
             </div>
         </CursorProvider>

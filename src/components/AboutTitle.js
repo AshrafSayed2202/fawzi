@@ -45,7 +45,7 @@ function AboutTitle(props) {
         case 'Product':
             singleData['offset'] = ["0.7 0", "1 1"];
             singleData['scaleProgres'] = [0.8, 1];
-            singleData['opacityProgres'] = [0.1, 0.6];
+            singleData['opacityProgres'] = [0.1, 0.3];
             singleData['blurProgres'] = ['blur(15px)', 'blur(0px)', 'blur(0px)'];
             singleData['translateProgres'] = ['150px 0px', '-700px 0px'];
             singleData['rotateProgres'] = ['0deg', '0deg', '0deg']
@@ -53,9 +53,9 @@ function AboutTitle(props) {
         case 'Lead':
             singleData['offset'] = ["0.7 0", "1 1"];
             singleData['scaleProgres'] = [0.8, 1];
-            singleData['opacityProgres'] = [0.1, 0.6];
+            singleData['opacityProgres'] = [0.1, 0.3];
             singleData['blurProgres'] = ['blur(15px)', 'blur(0px)', 'blur(0px)'];
-            singleData['translateProgres'] = ['-150px 0px', '700px 0px'];
+            singleData['translateProgres'] = ['-450px 0px', '700px 0px'];
             singleData['rotateProgres'] = ['0deg', '0deg', '0deg']
             break;
         default:

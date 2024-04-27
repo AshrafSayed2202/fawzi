@@ -339,7 +339,7 @@ body{
     flex-direction: column;
     justify-content: space-between;
     padding: 100px 0;
-    height:fill;
+    height:stretch;
 }
 @media (width < 1250px) {
     .left-menu ul li a span{
