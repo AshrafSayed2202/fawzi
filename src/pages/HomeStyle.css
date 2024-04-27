@@ -503,7 +503,6 @@ body{
     width: 80%; 
     display: grid;
     grid-template-columns: auto auto auto auto;
-    grid-template-rows: 400px 400px 400px;
 }
 .portfolio-card{
     overflow: hidden;
@@ -517,6 +516,7 @@ body{
     height: 100%;
     width: 100%;
     transition: 0.5s;
+    object-fit: cover;
 }
 .card-text-container{
     position: absolute;
@@ -542,6 +542,28 @@ body{
     font-weight: bold;
     padding: 15px 0;
     font-size: 1.2em;
+}
+@media (width < 1200px) {
+    .portfolio-cards-container{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .portfolio-card{
+        width: calc(50% - 10px);
+        max-height: 400px;
+    }
+    .card-name{
+        font-size: 1em;
+    }
+    .card-text-container svg{
+        display: none;
+    }
+}
+@media (width < 600px) {
+    .portfolio-card{
+        width: 100%;
+    }
 }
 /* Clients */
 .wave2{

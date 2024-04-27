@@ -615,7 +615,7 @@ function Home() {
                 <HeroSection />
                 <AboutSection />
                 <SkillsAndEducation toggleForm={toggleForm} />
-                {/* <PortfolioSection /> */}
+                <PortfolioSection />
                 {/* <ClientsComments /> */}
                 {/* <PricingSection /> */}
                 {/* <HireMeSection toggleForm={toggleForm} /> */}
