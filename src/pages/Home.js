@@ -619,7 +619,7 @@ function Home() {
                 <SkillsAndEducation toggleForm={toggleForm} />
                 <PortfolioSection />
                 <ClientsComments />
-                {/* <PricingSection /> */}
+                <PricingSection />
                 {/* <HireMeSection toggleForm={toggleForm} /> */}
                 <FooterSection />
             </div>
