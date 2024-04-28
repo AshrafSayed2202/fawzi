@@ -354,7 +354,9 @@ body{
     width: 100%;
     opacity: 0;
     display: none;
-    min-height: 425px;
+    height: 425px;
+    flex-direction: column;
+    justify-content: center;
 }
 .skills-group.active{
     opacity: 1;
@@ -821,6 +823,13 @@ body{
 }
 .hire-cover{
     width: 100%;
+    position: relative;
+}
+.hire-figure{
+    height: 80%;
+    position: absolute;
+    bottom: 0;
+    right: 10%;
 }
 .hire-text{
     position: absolute;
@@ -865,7 +874,7 @@ body{
     position: absolute;
     transform: skewX(-30deg) translateY(-20%);
     top: 0%;
-    left: -20%;
+    left: -40%;
 }
 .hire-text>span:hover::after{
     transition: 0.3s;
@@ -874,6 +883,33 @@ body{
 @media (width < 1200px) {
     .hire-text h1{
         font-size: 2.5em;
+    }
+}
+@media (width < 900px) {
+    .hire-text h1{
+        font-size: 1.5em;
+    }
+}
+@media (width < 600px) {
+    .hire-cover{
+        object-fit: cover;
+        object-position: left;
+        height: 700px;
+    }
+    .hire-figure{
+        height: 40%;
+        right: 50%;
+        transform: translateX(50%) !important;
+    }
+    .hire-text{
+        text-align: center;
+        left: 50%;
+        top: 20%;
+        transform: translateX(-50%) !important;
+    }
+    .hire-text>span{
+        padding: 20px 50px;
+        text-wrap: nowrap;
     }
 }
 /* Footer */
@@ -970,14 +1006,16 @@ body{
 @media (width < 1000px) {
     .footer-text{
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
         flex-wrap: wrap;
     }
     .footer-text>div{
         width: auto;
-        margin: auto;
+        /* margin: auto; */
+        margin-left: 20%;
         margin-top: 50px;
+    }
+    .footer-text>div ul{
+        padding-left: 15px;
     }
 }
 @media (width < 600px) {

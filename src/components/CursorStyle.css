@@ -17,3 +17,9 @@
     scale: 0;
     opacity: 0;
 }
+@media (width < 765px) {
+    .cursor-outline,
+    .cursor-image{
+        display: none;
+    }
+}

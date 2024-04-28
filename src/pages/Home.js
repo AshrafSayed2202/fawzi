@@ -45,6 +45,7 @@ import clientFive from '../assets/clients/5.png';
 import PricingCard from '../components/PricingCard';
 
 import HireMe from '../assets/HireMe.png'
+import HireFigure from '../assets/HireFigure.png'
 
 import wave2 from '../assets/wave2.svg'
 import wave3 from '../assets/wave3.svg'
@@ -295,14 +296,14 @@ function SkillsAndEducation(props) {
             firstGroupRef.current.className = 'skills-group active';
             secondGroupRef.current.className = 'skills-group';
             setTimeout(() => {
-                firstGroupRef.current.style.display = 'block'
+                firstGroupRef.current.style.display = 'flex'
                 secondGroupRef.current.style.display = 'none'
             }, 300);
         } else {
             secondGroupRef.current.className = 'skills-group active';
             firstGroupRef.current.className = 'skills-group';
             setTimeout(() => {
-                secondGroupRef.current.style.display = 'block'
+                secondGroupRef.current.style.display = 'flex'
                 firstGroupRef.current.style.display = 'none'
             }, 300);
         }
@@ -437,6 +438,7 @@ function ClientsComments() {
                 }
             })
         }
+        refreshActiveComment()
         let isDragging = false, startX, startScrollLeft;
         const dragStart = (e) => {
             isDragging = true;
@@ -488,7 +490,7 @@ function ClientsComments() {
                     whileInView={{ opacity: 1, y: 0 }}
                     className='comments-container'>
                     <ClientComment personImage={clientOne} personName='Aziz Ben Naif' personTitle='CEO, AZ IT' comment='Working with Fawzi was an exceptional experience! His understanding of project details was outstanding, and the results exceeded our expectations. I highly recommend him to anyone looking for engaging and effective design solutions' />
-                    <ClientComment personImage={clientTwo} personName='Charlotte Kelly' personTitle='Manager, TechGropse' comment='Fawzi is the best at what he does! His designs are clean, innovative, and user-friendly. He truly added value to our mobile app and received praise from all users.' active={true} />
+                    <ClientComment personImage={clientTwo} personName='Charlotte Kelly' personTitle='Manager, TechGropse' comment='Fawzi is the best at what he does! His designs are clean, innovative, and user-friendly. He truly added value to our mobile app and received praise from all users.' />
                     <ClientComment personImage={clientThree} personName='Ibrahim Elhassan' personTitle='CEO, One Solution' comment='Fawzi has a unique eye for design and consistently turns ideas into creative realities. His professionalism and prompt responses made working with him a real pleasure.' />
                     <ClientComment personImage={clientFour} personName='Saghar Behjati' personTitle='Ui/Ux Designer' comment='I am impressed by Fawzi’s passion and his attention to detail. Every project we collaborate on turns out better than I could have ever expected. I can’t wait for our future projects.' />
                     <ClientComment personImage={clientFive} personName='Matt Bauman' personTitle='Manger, Numero' comment='Finding a designer who genuinely listens and understands your vision is outstanding. The delivered designs were exceptional, and the willingness to adapt and tweak ensured our complete satisfaction. Highly recommended for anyone seeking a distinguished design experience.' />
@@ -548,6 +550,11 @@ function HireMeSection(props) {
     return (
         <div className='hire-container' id='Contact'>
             <img className='hire-cover' src={HireMe} alt='Hire Me' />
+            <motion.img
+                initial={{ opacity: 0, y: 75 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                className='hire-figure' src={HireFigure} alt='Hire Figure' />
             <motion.div
                 initial={{ opacity: 0, x: -200, y: '-70%' }}
                 whileInView={{ opacity: 1, x: '20%', y: '-70%' }}
