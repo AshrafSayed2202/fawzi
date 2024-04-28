@@ -182,6 +182,11 @@ body{
         padding-top: 60px;
     }
 }
+@media (width < 350px) {
+    .about-title{
+        font-size: 4em;
+    }
+}
 /* Skills & Education section */
 .skills-container{
     background-color: #131313;
@@ -498,6 +503,14 @@ body{
     }
     .skill-item img{
         display: none;
+    }
+}
+@media (width < 500px) {
+    .section-header{
+        font-size: 3em;
+    }
+    .section-sub-header{
+        font-size: 1.5em;
     }
 }
 /* Portfolio */
@@ -1026,6 +1039,11 @@ body{
         text-align: center;
     }
 }
+@media (width < 350px) {
+    .footer-text div h1{
+        font-size: 1.5em;
+    }
+}
 /* form */
 .form-container{
     display: flex;
@@ -1051,6 +1069,7 @@ body{
     backdrop-filter: blur(15px);
     padding: 60px;
     border-radius: 30px;
+    max-width: 80%;
 }
 .close-form{
     opacity: 0.6;
@@ -1154,4 +1173,22 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+}
+@media (width < 625px) {
+    .contact-form{
+        padding: 30px;
+    }
+}
+@media (width < 500px) {
+    .contact-form .personal{
+        flex-direction: column;
+        gap: 0;
+    }
+    .contact-form .personal .input-field{
+        width: 100%;
+    }
+    .contact-form h1{
+        font-size: 2em;
+    }
 }

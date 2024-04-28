@@ -422,23 +422,6 @@ function ClientsComments() {
             const htmlObject = doc.body.firstChild;
             comments.insertAdjacentElement("beforeend", htmlObject);
         })
-        const refreshActiveComment = () => {
-            document.querySelectorAll('.client-comment').forEach(e => {
-                e.classList.remove('active')
-                function inRange(x, min, max) {
-                    return x >= min && x <= max;
-                }
-                function isElementCentered(element) {
-                    const rect = element.getBoundingClientRect();
-                    const windowCenter = window.innerWidth / 2;
-                    return inRange(Math.trunc(rect.left + (rect.width / 2)), Math.trunc(windowCenter - 10), Math.trunc(windowCenter + 10));
-                }
-                if (isElementCentered(e)) {
-                    e.classList.add('active')
-                }
-            })
-        }
-        refreshActiveComment()
         let isDragging = false, startX, startScrollLeft;
         const dragStart = (e) => {
             isDragging = true;
@@ -475,7 +458,23 @@ function ClientsComments() {
         comments.addEventListener('mouseup', dragStop)
         comments.addEventListener('scroll', infiniteScroll)
         comments.addEventListener('touchend', () => { setTimeout(() => { refreshActiveComment() }, 700); })
-
+        const refreshActiveComment = () => {
+            document.querySelectorAll('.client-comment').forEach(e => {
+                e.classList.remove('active')
+                function inRange(x, min, max) {
+                    return x >= min && x <= max;
+                }
+                function isElementCentered(element) {
+                    const rect = element.getBoundingClientRect();
+                    const windowCenter = window.innerWidth / 2;
+                    return inRange(Math.trunc(rect.left + (rect.width / 2)), Math.trunc(windowCenter - 10), Math.trunc(windowCenter + 10));
+                }
+                if (isElementCentered(e)) {
+                    e.classList.add('active')
+                }
+            })
+        }
+        refreshActiveComment()
     }, [])
     return (
         <>
