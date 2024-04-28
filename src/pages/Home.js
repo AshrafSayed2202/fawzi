@@ -62,7 +62,44 @@ import { useForm, ValidationError } from '@formspree/react';
 
 function FormPopup(props) {
     const [state, handleSubmit] = useForm("xnqelrkz");
-
+    function validateInputs(e) {
+        e.preventDefault()
+        if (document.getElementById('first-name').value.length > 0) {
+            if (document.getElementById('last-name').value.length > 0) {
+                if (document.getElementById('email').value.length > 0) {
+                    if (document.getElementById('phone').value.length > 0) {
+                        if (document.getElementById('message').value.length > 0) {
+                            handleSubmit(e)
+                        } else {
+                            document.getElementById('message').classList.add('wrong-input')
+                            document.getElementById('message').focus()
+                        }
+                    } else {
+                        document.getElementById('phone').classList.add('wrong-input')
+                        document.getElementById('phone').focus()
+                    }
+                } else {
+                    document.getElementById('email').classList.add('wrong-input')
+                    document.getElementById('email').focus()
+                }
+            } else {
+                document.getElementById('last-name').classList.add('wrong-input')
+                document.getElementById('last-name').focus()
+            }
+        } else {
+            document.getElementById('first-name').classList.add('wrong-input')
+            document.getElementById('first-name').focus()
+        }
+    }
+    function onInput(e) {
+        if (e.target.value.length > 0) {
+            e.target.classList.remove('wrong-input')
+            e.target.classList.add('right-input')
+        } else {
+            e.target.classList.add('wrong-input')
+            e.target.classList.remove('right-input')
+        }
+    }
     function disableScroll() {
         document.body.style.overflow = "hidden";
         document.body.style.userSelect = "none";
@@ -106,7 +143,7 @@ function FormPopup(props) {
                 initial={{ y: -500, opacity: 0 }}
                 transition={{ duration: 0.7, delay: 1 }}
                 whileInView={{ y: 0, opacity: 1 }}
-                className="contact-form" onSubmit={handleSubmit}
+                className="contact-form" onSubmit={validateInputs}
             >
                 <img src={closeForm} alt='close-form' className='close-form' onClick={() => { enableScroll(); props.toggleForm() }} />
                 <h1>Let's connect </h1>
@@ -117,7 +154,7 @@ function FormPopup(props) {
                     whileInView={{ y: 0, opacity: 1 }}
                     className="personal">
                     <div className="input-field">
-                        <input type="text" name="first-name" placeholder='First Name' id='first-name' />
+                        <input type="text" name="first-name" placeholder='First Name' id='first-name' onInput={(e) => { onInput(e) }} />
                     </div>
                     <ValidationError
                         prefix="first-name"
@@ -125,7 +162,7 @@ function FormPopup(props) {
                         errors={state.errors}
                     />
                     <div className="input-field">
-                        <input type="text" name="last-name" placeholder='Last Name' id='last-name' />
+                        <input type="text" name="last-name" placeholder='Last Name' id='last-name' onInput={(e) => { onInput(e) }} />
                     </div>
                     <ValidationError
                         prefix="last-name"
@@ -138,7 +175,7 @@ function FormPopup(props) {
                     transition={{ duration: 0.7, delay: 0.6 }}
                     whileInView={{ y: 0, opacity: 1 }}>
                     <div className="input-field">
-                        <input type="email" name="email" placeholder='Email' id='email' />
+                        <input type="email" name="email" placeholder='Email' id='email' onInput={(e) => { onInput(e) }} />
                     </div>
                     <ValidationError
                         prefix="email"
@@ -151,7 +188,7 @@ function FormPopup(props) {
                     transition={{ duration: 0.7, delay: 0.9 }}
                     whileInView={{ y: 0, opacity: 1 }}>
                     <div className="input-field">
-                        <input type="text" name="phone" placeholder='Phone Number' id='phone' />
+                        <input type="text" name="phone" placeholder='Phone Number' id='phone' onInput={(e) => { onInput(e) }} />
                     </div>
                     <ValidationError
                         prefix="phone"
@@ -164,7 +201,7 @@ function FormPopup(props) {
                     transition={{ duration: 0.7, delay: 2.2 }}
                     whileInView={{ y: 0, opacity: 1 }}>
                     <div className="input-field">
-                        <textarea type="text" name="message" rows="5" cols="50" placeholder='message' id='message' />
+                        <textarea type="text" name="message" rows="5" cols="50" placeholder='message' id='message' onInput={(e) => { onInput(e) }} />
                     </div>
                     <ValidationError
                         prefix="message"
