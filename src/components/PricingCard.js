@@ -18,7 +18,7 @@ function PricingCard(props) {
                     <p className={props.priceType === 'price' ? 'price' : 'note'}>{props.priceType === 'price' ? <FontAwesomeIcon icon="fa-solid fa-dollar-sign" /> : null}{props.price}</p>
                 </div>
             </div>
-            <div className={props.btnType === 'normal' ? 'pricing-btn' : 'pricing-btn trans'}>{props.btnType === 'normal' ? 'Get Started' : 'Free Skill Check'}</div>
+            <div onClick={() => { props.toggleForm() }} className={props.btnType === 'normal' ? 'pricing-btn' : 'pricing-btn trans'} >{props.btnType === 'normal' ? 'Get Started' : 'Free Skill Check'}</div>
         </motion.div>
     )
 }

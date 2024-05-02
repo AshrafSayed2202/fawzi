@@ -537,7 +537,7 @@ function ClientsComments() {
 
     )
 }
-function PricingSection() {
+function PricingSection(props) {
     const [switchState, setSwitchState] = React.useState(false);
     const firstGroupRef = React.useRef(null)
     const secondGroupRef = React.useRef(null)
@@ -570,14 +570,14 @@ function PricingSection() {
                 </label>
             </div>
             <div className='pricing-group' ref={firstGroupRef} >
-                <PricingCard head='Screen' sub='Pay per screen' note='Cancel Anytime' noteType='text' price='5~10/Screen' priceType='price' btnType='normal' delay={0.3} />
-                <PricingCard head='Project' sub='Pay per project' note='Cancel Anytime' noteType='text' price='250/Project' priceType='price' btnType='normal' delay={0.7} />
-                <PricingCard head='Not Sure?' sub='Check the skill' note='You can order' noteType='text' price='1 free task' priceType='text' btnType='trans' delay={1} />
+                <PricingCard toggleForm={props.toggleForm} head='Screen' sub='Pay per screen' note='Cancel Anytime' noteType='text' price='5~10/Screen' priceType='price' btnType='normal' delay={0.3} />
+                <PricingCard toggleForm={props.toggleForm} head='Project' sub='Pay per project' note='Cancel Anytime' noteType='text' price='250/Project' priceType='price' btnType='normal' delay={0.7} />
+                <PricingCard toggleForm={props.toggleForm} head='Not Sure?' sub='Check the skill' note='You can order' noteType='text' price='1 free task' priceType='text' btnType='trans' delay={1} />
             </div>
             <div className='pricing-group' ref={secondGroupRef} >
-                <PricingCard head='1 Month' sub='Part time' note='Cancel Anytime' noteType='text' price='500/mo' priceType='price' btnType='normal' delay={0.3} />
-                <PricingCard head='1 Month' sub='Full time' note=' Save $200' noteType='round' price='800/mo' priceType='price' btnType='normal' delay={0.7} />
-                <PricingCard head='1 Year' sub='Paid monthly' note='Save $600' noteType='round' price='9000/yr' priceType='price' btnType='normal' delay={1} />
+                <PricingCard toggleForm={props.toggleForm} head='1 Month' sub='Part time' note='Cancel Anytime' noteType='text' price='500/mo' priceType='price' btnType='normal' delay={0.3} />
+                <PricingCard toggleForm={props.toggleForm} head='1 Month' sub='Full time' note=' Save $200' noteType='round' price='800/mo' priceType='price' btnType='normal' delay={0.7} />
+                <PricingCard toggleForm={props.toggleForm} head='1 Year' sub='Paid monthly' note='Save $600' noteType='round' price='9000/yr' priceType='price' btnType='normal' delay={1} />
             </div>
         </div>
     )
@@ -663,7 +663,7 @@ function Home() {
                 <SkillsAndEducation toggleForm={toggleForm} />
                 <PortfolioSection />
                 <ClientsComments />
-                <PricingSection />
+                <PricingSection toggleForm={toggleForm} />
                 <HireMeSection toggleForm={toggleForm} />
                 <FooterSection />
             </div>
